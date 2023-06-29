@@ -18,6 +18,11 @@ namespace Pymex.MVC.Models
             get => $"{Nombre} {Apellidos}";
         }
 
+        public bool IsAdmin
+        {
+            get => Perfil == Perfil.Administrador;
+        }
+
     }
 
     public enum Perfil
