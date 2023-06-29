@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://tempuri.org/" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" name="AlmacenService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://nasatoaster/PymexServices/Pymex.Services.AlmacenService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://nasatoaster/PymexServices/Pymex.Services.AlmacenService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://nasatoaster/PymexServices/Pymex.Services.AlmacenService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Pymex.Services.Contracts" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IAlmacenService_Listar_InputMessage">
+    <wsdl:part name="parameters" element="tns:Listar" />
+  </wsdl:message>
+  <wsdl:message name="IAlmacenService_Listar_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListarResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlmacenService_ObtenerPorId_InputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerPorId" />
+  </wsdl:message>
+  <wsdl:message name="IAlmacenService_ObtenerPorId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ObtenerPorIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlmacenService_Crear_InputMessage">
+    <wsdl:part name="parameters" element="tns:Crear" />
+  </wsdl:message>
+  <wsdl:message name="IAlmacenService_Crear_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CrearResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlmacenService_Actualizar_InputMessage">
+    <wsdl:part name="parameters" element="tns:Actualizar" />
+  </wsdl:message>
+  <wsdl:message name="IAlmacenService_Actualizar_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ActualizarResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAlmacenService_Eliminar_InputMessage">
+    <wsdl:part name="parameters" element="tns:Eliminar" />
+  </wsdl:message>
+  <wsdl:message name="IAlmacenService_Eliminar_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EliminarResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IAlmacenService">
+    <wsdl:operation name="Listar">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGenericServiceOf_AlmacenDC/Listar" message="tns:IAlmacenService_Listar_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGenericServiceOf_AlmacenDC/ListarResponse" message="tns:IAlmacenService_Listar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerPorId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGenericServiceOf_AlmacenDC/ObtenerPorId" message="tns:IAlmacenService_ObtenerPorId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGenericServiceOf_AlmacenDC/ObtenerPorIdResponse" message="tns:IAlmacenService_ObtenerPorId_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Crear">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGenericServiceOf_AlmacenDC/Crear" message="tns:IAlmacenService_Crear_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGenericServiceOf_AlmacenDC/CrearResponse" message="tns:IAlmacenService_Crear_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Actualizar">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGenericServiceOf_AlmacenDC/Actualizar" message="tns:IAlmacenService_Actualizar_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGenericServiceOf_AlmacenDC/ActualizarResponse" message="tns:IAlmacenService_Actualizar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Eliminar">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDeleteOperationOf_AlmacenDC/Eliminar" message="tns:IAlmacenService_Eliminar_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDeleteOperationOf_AlmacenDC/EliminarResponse" message="tns:IAlmacenService_Eliminar_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IAlmacenService" type="tns:IAlmacenService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Listar">
+      <soap:operation soapAction="http://tempuri.org/IGenericServiceOf_AlmacenDC/Listar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerPorId">
+      <soap:operation soapAction="http://tempuri.org/IGenericServiceOf_AlmacenDC/ObtenerPorId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Crear">
+      <soap:operation soapAction="http://tempuri.org/IGenericServiceOf_AlmacenDC/Crear" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Actualizar">
+      <soap:operation soapAction="http://tempuri.org/IGenericServiceOf_AlmacenDC/Actualizar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Eliminar">
+      <soap:operation soapAction="http://tempuri.org/IDeleteOperationOf_AlmacenDC/Eliminar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="AlmacenService">
+    <wsdl:port name="BasicHttpBinding_IAlmacenService" binding="tns:BasicHttpBinding_IAlmacenService">
+      <soap:address location="http://nasatoaster/PymexServices/Pymex.Services.AlmacenService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

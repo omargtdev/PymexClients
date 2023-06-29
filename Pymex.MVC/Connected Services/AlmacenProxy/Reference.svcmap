@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="0a291ec0-cd17-4c78-9151-406739cd4d48" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://NASATOASTER/PymexServices/Pymex.Services.AlmacenService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="Pymex.xsd" MetadataType="Schema" ID="d98de1e0-c03b-4b51-9017-0e04e85f2f38" SourceId="1" SourceUrl="http://nasatoaster/PymexServices/Pymex.Services.AlmacenService.svc?xsd=xsd1" />
+    <MetadataFile FileName="Pymex1.xsd" MetadataType="Schema" ID="90e03cf0-360d-42c0-8d00-b3a91151632d" SourceId="1" SourceUrl="http://nasatoaster/PymexServices/Pymex.Services.AlmacenService.svc?xsd=xsd0" />
+    <MetadataFile FileName="Pymex2.xsd" MetadataType="Schema" ID="ccc4a338-64f1-467a-bb25-f7ca578d2058" SourceId="1" SourceUrl="http://nasatoaster/PymexServices/Pymex.Services.AlmacenService.svc?xsd=xsd2" />
+    <MetadataFile FileName="AlmacenService.wsdl" MetadataType="Wsdl" ID="67f343a1-ee6f-4604-b23b-f4da96e7d8e6" SourceId="1" SourceUrl="http://nasatoaster/PymexServices/Pymex.Services.AlmacenService.svc?wsdl" />
+    <MetadataFile FileName="Pymex.disco" MetadataType="Disco" ID="77e0e7f8-37bd-4d2d-9b7d-e64272c35a04" SourceId="1" SourceUrl="http://nasatoaster/PymexServices/Pymex.Services.AlmacenService.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

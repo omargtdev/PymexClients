@@ -1,0 +1,147 @@
+﻿@model IEnumerable<Pymex.MVC.Models.Producto>
+
+@{
+    ViewBag.Title = "Producto";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+@section styles {
+    @Styles.Render("~/Content/table")
+}
+
+<!-- DataTable -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3 d-flex justify-content-between">
+        <h2 class="m-0 font-weight-bold text-primary">Productos</h2>
+        @Html.ActionLink("Crear Producto", "Create", "Producto", new { area = "" }, new { @class = "btn btn-primary" })
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Acciones</th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Codigo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Descripcion)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CategoriaDescripcion)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.AlmacenDescripcion)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Activo)
+                        </th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Acciones</th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Codigo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Descripcion)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.CategoriaDescripcion)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.AlmacenDescripcion)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Activo)
+                        </th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach(var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <a href="@Url.Action("Details", new { codigo = item.Codigo.Trim() } )"><i class="fas fa-info-circle"></i></a> |
+                                <a href="@Url.Action("Edit", new { codigo = item.Codigo.Trim() } )"><i class="fas fa-edit"></i></a> |
+                                <a href="#" class="activate-deactivate" data-code="@item.Codigo.Trim()" data-state="@(item.Activo ? "activar" : "desactivar")">
+                                    <i class="fas fa-toggle-@(item.Activo ? "on" : "off")"></i>
+                                </a>
+                            </td>
+                            <td>@Html.DisplayFor(p => item.Codigo)</td>
+                            <td>@Html.DisplayFor(p => item.Descripcion)</td>
+                            <td>@Html.DisplayFor(p => item.CategoriaDescripcion)</td>
+                            <td>@Html.DisplayFor(p => item.AlmacenDescripcion)</td>
+                            <td>@Html.DisplayFor(p => item.Activo)</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Active/Desactive Modal-->
+<div class="modal fade" id="activateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"></h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Los productos que se desactivan, no serán visibles para hacer transacciones.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                <form method="post" action="@Url.Action("AlternarActivacion", "Producto")" class="action-form">
+                    <input class="d-none" name="codigo" type="text"/>
+                    <input class="d-none" name="activar" type="checkbox"/>
+                    <button type="submit" class="btn btn-primary">Mode</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    @Scripts.Render("~/bundles/datatable")
+
+    <script>
+        $(document).on("click", "a.activate-deactivate", openModalPopUp);
+
+        const reverseStates = {
+            activar: {
+                toActive: false,
+                description: "Desactivar"
+            },
+            desactivar: {
+                toActive: true,
+                description: "Activar"
+            }
+        }
+
+        function openModalPopUp() {
+            const modal = $("#activateModal");
+            const productState = $(this).data("state");
+            const mode = reverseStates[productState];
+
+            // Modal title
+            modal.find(".modal-title").text(
+                `¿Estás seguro que deseas ${mode.description.toLowerCase()} el producto?`
+            );
+
+            // Modal form
+            const form = modal.find(".action-form");
+            form.find("input[name='codigo']").val($(this).data("code"));
+            form.find("input[name='activar']").prop("checked", mode.toActive);
+            form.find("input[name='activar']").val(mode.toActive);
+            form.find("button").text(mode.description);
+ 
+            // Show modal
+            modal.modal();
+        }
+    </script>
+}

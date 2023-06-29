@@ -1,0 +1,55 @@
+﻿@model Pymex.MVC.Models.ProductoDetail
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+
+<h1 class="h3 mb-2 text-gray-800">Producto: COD. @Model.Codigo</h1>
+
+<div class="card shadow mb-4">
+    <div class="card-body" style="font-size: 20px;">
+        <div class="row">
+            <div class="col">
+                @Html.LabelFor(model => model.Id, new { @class = "font-weight-bold" }): <span class="font-weight-bold">@Model.Id</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                @Html.LabelFor(model => model.Codigo, new { @class = "font-weight-bold" }): @Model.Codigo
+            </div>
+            <div class="col-4">
+                @Html.LabelFor(model => Model.Activo, new { @class = "font-weight-bold" }): @(Model.Activo ? "Si" : "No")
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                @Html.LabelFor(model => model.Descripcion, new { @class = "font-weight-bold" }): @Model.Descripcion
+            </div>
+            <div class="col-4">
+                @Html.LabelFor(model => model.Stock, new { @class = "font-weight-bold" }): @Model.Stock
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-4">
+                @Html.LabelFor(model => model.CategoriaDescripcion, new { @class = "font-weight-bold" }): @Model.CategoriaDescripcion
+            </div>
+            <div class="col-4">
+                @Html.LabelFor(model => model.AlmacenDescripcion, new { @class = "font-weight-bold" }): @Model.AlmacenDescripcion
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                @Html.LabelFor(model => model.UltimoPrecioCompra, new { @class = "font-weight-bold" }): @Html.DisplayFor(model => model.UltimoPrecioCompra)
+            </div>
+            <div class="col">
+                @Html.LabelFor(model => model.UltimoPrecioVenta, new { @class = "font-weight-bold" }): @Html.DisplayFor(model => model.UltimoPrecioVenta)
+            </div>
+            <div class="col">
+                @Html.LabelFor(model => model.FechaRegistro, new { @class = "font-weight-bold" }): @Html.DisplayFor(model => model.FechaRegistro)
+            </div>
+        </div>
+    </div>
+</div>
+<a class="btn btn-secondary ml-2" href="~/Producto">Volver</a>
