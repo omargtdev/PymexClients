@@ -132,7 +132,7 @@ namespace Pymex.MVC.Controllers
                 return View();
             }
 
-            TempData["SuccessMessage"] = "Se editó el producto correctamente";
+            TempData["SuccessMessage"] = response.Mensaje;
             return RedirectToAction("Index");
 
         }

@@ -1,69 +1,68 @@
-﻿using Pymex.MVC.ClienteProxy;
-using Pymex.MVC.Filters;
-using Pymex.MVC.Models;
+﻿using Pymex.MVC.Models;
 using Pymex.MVC.Models.Mapper;
 using Pymex.MVC.Models.Mapper.Contracts;
+using Pymex.MVC.ProveedorProxy;
 using System.Linq;
 using System.Web.Mvc;
 
 namespace Pymex.MVC.Controllers
 {
-    [ValidateSession]
-    public class ClienteController : Controller
+    public class ProveedorController : Controller
     {
+        
+        private readonly IProveedorService _proveedorService = new ProveedorServiceClient();
+        private readonly IGenericMapper<ProveedorDC, Proveedor> _modelMapper = new PersonaMapper();
 
-        private readonly IClienteService _clienteService = new ClienteServiceClient();
-        private readonly IGenericMapper<ClienteDC, Cliente> _modelMapper = new PersonaMapper();
-
+        // GET: Proveedor
         public ActionResult Index()
         {
-            var response = _clienteService.Listar();
+            var response = _proveedorService.Listar();
 
             if (!response.EsCorrecto)
             {
                 return RedirectToAction("Home", "Index");
             }
 
-            var clientes = response.Data.Select(c => _modelMapper.ToModel(c));
+            var proveedores = response.Data.Select(p => _modelMapper.ToModel(p));
             if (TempData["SuccessMessage"] != null) // Send message if exists
                 ViewBag.SuccessMessage = TempData["SuccessMessage"].ToString();
 
             if (TempData["ErrorMessage"] != null) // Send message if exists
                 ViewBag.ErrorMessage = TempData["ErrorMessage"].ToString();
 
-
-            return View(clientes);
+            return View(proveedores);
         }
 
-        // GET: Cliente/Details/5
+        // GET: Proveedor/Details/5
         public ActionResult Details(int id)
         {
-            var response = _clienteService.ObtenerPorId(id);
+            var response = _proveedorService.ObtenerPorId(id);
             if(!response.EsCorrecto)
             {
                 TempData["ErrorMessage"] = "No se pudieron cargar los datos. Inténtelo de nuevo.";
                 return RedirectToAction("Action");
             }
 
-            var cliente = _modelMapper.ToModel(response.Data);
-            return View(cliente);
+            var proveedor = _modelMapper.ToModel(response.Data);
+            return View(proveedor);
         }
 
+        // GET: Proveedor/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: Cliente/Create
+        // POST: Proveedor/Create
         [HttpPost]
-        public ActionResult Create([Bind(Exclude="Id")] Cliente cliente)
+        public ActionResult Create([Bind(Exclude="Id")] Proveedor proveedor)
         {
             if (!ModelState.IsValid)
             {
                 return View();
             }
             
-            var response = _clienteService.Crear(_modelMapper.ToDataContract(cliente));
+            var response = _proveedorService.Crear(_modelMapper.ToDataContract(proveedor));
             if(!response.EsCorrecto)
             {
                 ViewBag.ErrorMessage = response.Mensaje;
@@ -74,10 +73,10 @@ namespace Pymex.MVC.Controllers
             return RedirectToAction("Index");
         }
 
-        // GET: Cliente/Edit/5
+        // GET: Proveedor/Edit/5
         public ActionResult Edit(int id)
         {
-            var response = _clienteService.ObtenerPorId(id);
+            var response = _proveedorService.ObtenerPorId(id);
             if (!response.EsCorrecto)
             {
                 TempData["ErrorMessage"] = "No se pudieron cargar los datos. Inténtelo de nuevo.";
@@ -87,16 +86,16 @@ namespace Pymex.MVC.Controllers
             return View(_modelMapper.ToModel(response.Data));
         }
 
-        // POST: Cliente/Edit/5
+        // POST: Proveedor/Edit/5
         [HttpPost]
-        public ActionResult Edit(Cliente cliente)
+        public ActionResult Edit(Proveedor proveedor)
         {
             if (!ModelState.IsValid)
             {
                 return View();
             }
 
-            var response = _clienteService.Actualizar(_modelMapper.ToDataContract(cliente));
+            var response = _proveedorService.Actualizar(_modelMapper.ToDataContract(proveedor));
             if (!response.EsCorrecto)
             {
                 ViewBag.ErrorMessage = response.Mensaje;
@@ -107,11 +106,11 @@ namespace Pymex.MVC.Controllers
             return RedirectToAction("Index");
         }
 
-        // POST: Cliente/Delete/5
+        // POST: Proveedor/Delete/5
         [HttpPost]
         public ActionResult Delete(int id)
         {
-            var response = _clienteService.Eliminar(id);
+            var response = _proveedorService.Eliminar(id);
 
             if (response.EsCorrecto)
                 TempData["SuccessMessage"] = response.Mensaje;

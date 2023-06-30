@@ -1,0 +1,35 @@
+﻿@model Pymex.MVC.Models.Proveedor
+
+@{
+    ViewBag.Title = "Detalle Proveedor";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h1 class="h3 mb-2 text-gray-800">Cliente</h1>
+
+<div class="card shadow mb-4">
+    <div class="card-body" style="font-size: 20px;">
+        <div class="row">
+            <div class="col">
+                @Html.LabelFor(model => model.Id, new { @class = "font-weight-bold" }): <span class="font-weight-bold">@Model.Id</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                @Html.LabelFor(model => model.TipoDocumento, new { @class = "font-weight-bold" }): @Model.TipoDocumentoDescripcion
+            </div>
+            <div class="col-6">
+                @Html.LabelFor(model => Model.NumeroDocumento, new { @class = "font-weight-bold" }): @Model.NumeroDocumento
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                @Html.LabelFor(model => model.NombreCompleto, new { @class = "font-weight-bold" }): @Model.NombreCompleto
+            </div>
+            <div class="col-6">
+                @Html.LabelFor(model => model.FechaRegistro, new { @class = "font-weight-bold" }): @Model.FechaRegistro
+            </div>
+        </div>
+    </div>
+</div>
+<a class="btn btn-secondary ml-2" href="~/Proveedor">Volver</a>
