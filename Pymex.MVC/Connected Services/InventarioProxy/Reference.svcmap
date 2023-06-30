@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="1a8632e3-b54d-4177-a6ef-77a0094a75a8" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://NASATOASTER/PymexServices/Pymex.Services.InventarioService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="Pymex.xsd" MetadataType="Schema" ID="4d190100-f840-4b73-85b0-5cb1021d49be" SourceId="1" SourceUrl="http://nasatoaster/PymexServices/Pymex.Services.InventarioService.svc?xsd=xsd3" />
+    <MetadataFile FileName="InventarioService.wsdl" MetadataType="Wsdl" ID="4a05baad-6ea7-4730-94c1-966cffef5607" SourceId="1" SourceUrl="http://nasatoaster/PymexServices/Pymex.Services.InventarioService.svc?wsdl" />
+    <MetadataFile FileName="Pymex1.xsd" MetadataType="Schema" ID="2d33b943-324c-4273-822e-f43b0fd939ce" SourceId="1" SourceUrl="http://nasatoaster/PymexServices/Pymex.Services.InventarioService.svc?xsd=xsd0" />
+    <MetadataFile FileName="Pymex.disco" MetadataType="Disco" ID="0b8e498f-84f8-4225-be0a-c2e08d16767f" SourceId="1" SourceUrl="http://nasatoaster/PymexServices/Pymex.Services.InventarioService.svc?disco" />
+    <MetadataFile FileName="Pymex2.xsd" MetadataType="Schema" ID="0742c0b0-72f5-4394-98dd-a6c9cdf70254" SourceId="1" SourceUrl="http://nasatoaster/PymexServices/Pymex.Services.InventarioService.svc?xsd=xsd1" />
+    <MetadataFile FileName="Pymex3.xsd" MetadataType="Schema" ID="9fe2af4d-b5bb-44b4-a32e-0b9cee555180" SourceId="1" SourceUrl="http://nasatoaster/PymexServices/Pymex.Services.InventarioService.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

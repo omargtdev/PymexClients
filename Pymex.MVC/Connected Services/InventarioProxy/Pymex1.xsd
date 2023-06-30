@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://nasatoaster/PymexServices/Pymex.Services.InventarioService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Pymex.Services.Contracts" />
+  <xs:element name="RegistrarEntrada">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Pymex.Services.Contracts" minOccurs="0" name="entrada" nillable="true" type="q1:EntradaDC" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RegistrarEntradaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Pymex.Services.Contracts" minOccurs="0" name="RegistrarEntradaResult" nillable="true" type="q2:ResponseDataContract" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RegistrarSalida">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Pymex.Services.Contracts" minOccurs="0" name="salida" nillable="true" type="q3:SalidaDC" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="RegistrarSalidaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Pymex.Services.Contracts" minOccurs="0" name="RegistrarSalidaResult" nillable="true" type="q4:ResponseDataContract" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListarSalidas">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListarSalidasResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Pymex.Services.Contracts" minOccurs="0" name="ListarSalidasResult" nillable="true" type="q5:ResponseWithDataDataContractOfArrayOfSalidaDCXmnxQzc5" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListarEntradas">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListarEntradasResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Pymex.Services.Contracts" minOccurs="0" name="ListarEntradasResult" nillable="true" type="q6:ResponseWithDataDataContractOfArrayOfEntradaDCXmnxQzc5" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BuscarSalidaPorCodigo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="codigo" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BuscarSalidaPorCodigoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Pymex.Services.Contracts" minOccurs="0" name="BuscarSalidaPorCodigoResult" nillable="true" type="q7:ResponseWithDataDataContractOfSalidaDCXmnxQzc5" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BuscarEntradaPorCodigo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="codigo" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="BuscarEntradaPorCodigoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Pymex.Services.Contracts" minOccurs="0" name="BuscarEntradaPorCodigoResult" nillable="true" type="q8:ResponseWithDataDataContractOfEntradaDCXmnxQzc5" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

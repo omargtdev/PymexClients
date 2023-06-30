@@ -1,0 +1,99 @@
+﻿@model IEnumerable<Pymex.MVC.Models.Entrada>
+
+@{
+    ViewBag.Title = "Entradas";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+@section styles {
+    @Styles.Render("~/Content/table")
+}
+
+@if(ViewBag.SuccessMessage != null)
+    {
+        <div class="alert alert-success alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            @ViewBag.SuccessMessage
+        </div>
+    }
+
+@if(ViewBag.ErrorMessage != null)
+    {
+        <div class="alert alert-danger alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            @ViewBag.ErrorMessage
+        </div>
+    }
+
+<!-- DataTable -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3 d-flex justify-content-between">
+        <h2 class="m-0 font-weight-bold text-primary">Entradas</h2>
+        @Html.ActionLink("Registrar Entrada", "Create", "Entrada", new { area = "" }, new { @class = "btn btn-primary" })
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Acciones</th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Codigo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FechaRegistro)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.IdProveedor)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.NombreProveedor)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.UsuarioRegistro)
+                        </th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Acciones</th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Codigo)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FechaRegistro)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.IdProveedor)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.NombreProveedor)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.UsuarioRegistro)
+                        </th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach(var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <a href="@Url.Action("Details", new { codigo = item.Codigo.Trim() } )"><i class="fas fa-info-circle"></i></a>
+                            </td>
+                            <td>@Html.DisplayFor(p => item.Codigo)</td>
+                            <td>@Html.DisplayFor(p => item.FechaRegistro)</td>
+                            <td>@Html.DisplayFor(p => item.IdProveedor)</td>
+                            <td>@Html.DisplayFor(p => item.NombreProveedor)</td>
+                            <td>@Html.DisplayFor(p => item.UsuarioRegistro)</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    @Scripts.Render("~/bundles/datatable")
+}

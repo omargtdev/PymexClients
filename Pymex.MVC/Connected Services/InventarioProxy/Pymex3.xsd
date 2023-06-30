@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Pymex.Services.Contracts" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Pymex.Services.Contracts" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://nasatoaster/PymexServices/Pymex.Services.InventarioService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Pymex.Services.ValueObjects" />
+  <xs:complexType name="EntradaDC">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Codigo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FechaRegistro" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Proveedor" nillable="true" type="tns:ProveedorDC" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Pymex.Services.ValueObjects" minOccurs="0" name="HistorialSeguimiento" nillable="true" type="q1:HistorialSeguimientoDC" />
+      <xs:element minOccurs="0" name="DetalleProductos" nillable="true" type="tns:ArrayOfEntradaDetalleDC" />
+      <xs:element minOccurs="0" name="UsuarioAccion" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EntradaDC" nillable="true" type="tns:EntradaDC" />
+  <xs:complexType name="ProveedorDC">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Pymex.Services.ValueObjects" minOccurs="0" name="TipoDocumento" type="q2:TipoDocumento" />
+      <xs:element minOccurs="0" name="NumeroDocumento" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NombreCompleto" nillable="true" type="xs:string" />
+      <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Pymex.Services.ValueObjects" minOccurs="0" name="HistorialSeguimiento" nillable="true" type="q3:HistorialSeguimientoDC" />
+      <xs:element minOccurs="0" name="UsuarioAccion" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProveedorDC" nillable="true" type="tns:ProveedorDC" />
+  <xs:complexType name="ArrayOfEntradaDetalleDC">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EntradaDetalleDC" nillable="true" type="tns:EntradaDetalleDC" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEntradaDetalleDC" nillable="true" type="tns:ArrayOfEntradaDetalleDC" />
+  <xs:complexType name="EntradaDetalleDC">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Producto" nillable="true" type="tns:ProductoDC" />
+      <xs:element minOccurs="0" name="PrecioCompraUnidad" type="xs:decimal" />
+      <xs:element minOccurs="0" name="PrecioVentaUnidad" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Cantidad" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EntradaDetalleDC" nillable="true" type="tns:EntradaDetalleDC" />
+  <xs:complexType name="ProductoDC">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Codigo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Descripcion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Categoria" nillable="true" type="tns:CategoriaDC" />
+      <xs:element minOccurs="0" name="Almacen" nillable="true" type="tns:AlmacenDC" />
+      <xs:element minOccurs="0" name="Activo" type="xs:boolean" />
+      <xs:element minOccurs="0" name="UltimoPrecioCompra" type="xs:decimal" />
+      <xs:element minOccurs="0" name="UltimoPrecioVenta" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Stock" type="xs:int" />
+      <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Pymex.Services.ValueObjects" minOccurs="0" name="HistorialSeguimiento" nillable="true" type="q4:HistorialSeguimientoDC" />
+      <xs:element minOccurs="0" name="UsuarioAccion" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ProductoDC" nillable="true" type="tns:ProductoDC" />
+  <xs:complexType name="CategoriaDC">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Descripcion" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CategoriaDC" nillable="true" type="tns:CategoriaDC" />
+  <xs:complexType name="AlmacenDC">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Descripcion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Direccion" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Telefono" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Aforo" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="AlmacenDC" nillable="true" type="tns:AlmacenDC" />
+  <xs:complexType name="ResponseDataContract">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EsCorrecto" type="xs:boolean" />
+      <xs:element minOccurs="0" name="Mensaje" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ResponseDataContract" nillable="true" type="tns:ResponseDataContract" />
+  <xs:complexType name="SalidaDC">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Codigo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="FechaRegistro" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Cliente" nillable="true" type="tns:ClienteDC" />
+      <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Pymex.Services.ValueObjects" minOccurs="0" name="HistorialSeguimiento" nillable="true" type="q5:HistorialSeguimientoDC" />
+      <xs:element minOccurs="0" name="DetalleProductos" nillable="true" type="tns:ArrayOfSalidaDetalleDC" />
+      <xs:element minOccurs="0" name="UsuarioAccion" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SalidaDC" nillable="true" type="tns:SalidaDC" />
+  <xs:complexType name="ClienteDC">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Pymex.Services.ValueObjects" minOccurs="0" name="TipoDocumento" type="q6:TipoDocumento" />
+      <xs:element minOccurs="0" name="NumeroDocumento" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="NombreCompleto" nillable="true" type="xs:string" />
+      <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Pymex.Services.ValueObjects" minOccurs="0" name="HistorialSeguimiento" nillable="true" type="q7:HistorialSeguimientoDC" />
+      <xs:element minOccurs="0" name="UsuarioAccion" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ClienteDC" nillable="true" type="tns:ClienteDC" />
+  <xs:complexType name="ArrayOfSalidaDetalleDC">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SalidaDetalleDC" nillable="true" type="tns:SalidaDetalleDC" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSalidaDetalleDC" nillable="true" type="tns:ArrayOfSalidaDetalleDC" />
+  <xs:complexType name="SalidaDetalleDC">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Producto" nillable="true" type="tns:ProductoDC" />
+      <xs:element minOccurs="0" name="PrecioVentaUnidad" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Cantidad" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="SalidaDetalleDC" nillable="true" type="tns:SalidaDetalleDC" />
+  <xs:complexType name="ResponseWithDataDataContractOfArrayOfSalidaDCXmnxQzc5">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="ResponseWithDataDataContractOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Pymex.Services.Contracts" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="ArrayOfSalidaDC" Namespace="http://schemas.datacontract.org/2004/07/Pymex.Services.Contracts" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ResponseDataContract">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Data" nillable="true" type="tns:ArrayOfSalidaDC" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ResponseWithDataDataContractOfArrayOfSalidaDCXmnxQzc5" nillable="true" type="tns:ResponseWithDataDataContractOfArrayOfSalidaDCXmnxQzc5" />
+  <xs:complexType name="ArrayOfSalidaDC">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SalidaDC" nillable="true" type="tns:SalidaDC" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfSalidaDC" nillable="true" type="tns:ArrayOfSalidaDC" />
+  <xs:complexType name="ResponseWithDataDataContractOfArrayOfEntradaDCXmnxQzc5">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="ResponseWithDataDataContractOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Pymex.Services.Contracts" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="ArrayOfEntradaDC" Namespace="http://schemas.datacontract.org/2004/07/Pymex.Services.Contracts" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ResponseDataContract">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Data" nillable="true" type="tns:ArrayOfEntradaDC" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ResponseWithDataDataContractOfArrayOfEntradaDCXmnxQzc5" nillable="true" type="tns:ResponseWithDataDataContractOfArrayOfEntradaDCXmnxQzc5" />
+  <xs:complexType name="ArrayOfEntradaDC">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EntradaDC" nillable="true" type="tns:EntradaDC" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEntradaDC" nillable="true" type="tns:ArrayOfEntradaDC" />
+  <xs:complexType name="ResponseWithDataDataContractOfSalidaDCXmnxQzc5">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="ResponseWithDataDataContractOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Pymex.Services.Contracts" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="SalidaDC" Namespace="http://schemas.datacontract.org/2004/07/Pymex.Services.Contracts" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ResponseDataContract">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Data" nillable="true" type="tns:SalidaDC" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ResponseWithDataDataContractOfSalidaDCXmnxQzc5" nillable="true" type="tns:ResponseWithDataDataContractOfSalidaDCXmnxQzc5" />
+  <xs:complexType name="ResponseWithDataDataContractOfEntradaDCXmnxQzc5">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="ResponseWithDataDataContractOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Pymex.Services.Contracts" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="EntradaDC" Namespace="http://schemas.datacontract.org/2004/07/Pymex.Services.Contracts" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:ResponseDataContract">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Data" nillable="true" type="tns:EntradaDC" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="ResponseWithDataDataContractOfEntradaDCXmnxQzc5" nillable="true" type="tns:ResponseWithDataDataContractOfEntradaDCXmnxQzc5" />
+</xs:schema>

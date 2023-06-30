@@ -139,6 +139,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Connected Services\InventarioProxy\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Connected Services\ProductoProxy\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -158,10 +163,12 @@
     <Compile Include="Controllers\Admin\SistemaController.cs" />
     <Compile Include="Controllers\Admin\UsuarioController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
+    <Compile Include="Controllers\Inventario\EntradaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ProductoController.cs" />
     <Compile Include="Controllers\ProveedorController.cs" />
+    <Compile Include="Controllers\Inventario\SalidaController.cs" />
     <Compile Include="Filters\ValidateAdministratorUserAttribute.cs" />
     <Compile Include="Models\Categoria.cs" />
     <Compile Include="Filters\ValidateSessionAttribute.cs" />
@@ -170,14 +177,19 @@
     </Compile>
     <Compile Include="Models\Almacen.cs" />
     <Compile Include="Models\Cliente.cs" />
+    <Compile Include="Models\Entrada.cs" />
     <Compile Include="Models\LoginAccount.cs" />
     <Compile Include="Models\Mapper\AlmacenMapper.cs" />
     <Compile Include="Models\Mapper\CategoriaMapper.cs" />
     <Compile Include="Models\Mapper\Contracts\IModelDetailMapper.cs" />
     <Compile Include="Models\Mapper\Contracts\IGenericMapper.cs" />
+    <Compile Include="Models\Mapper\EntradaMapper.cs" />
+    <Compile Include="Models\Mapper\SalidaMapper.cs" />
     <Compile Include="Models\Mapper\UsuarioMapper.cs" />
     <Compile Include="Models\Persona.cs" />
     <Compile Include="Models\ProductoDetail.cs" />
+    <Compile Include="Models\Salida.cs" />
+    <Compile Include="Models\Sistema.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Models\Mapper\PersonaMapper.cs" />
     <Compile Include="Models\Mapper\ProductoMapper.cs" />
@@ -247,6 +259,34 @@
     <None Include="Connected Services\ClienteProxy\Pymex3.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\InventarioProxy\InventarioService.wsdl" />
+    <Content Include="Connected Services\InventarioProxy\Pymex.MVC.InventarioProxy.ResponseDataContract.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\InventarioProxy\Pymex.MVC.InventarioProxy.ResponseWithDataDataContractOfArrayOfEntradaDCXmnxQzc5.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\InventarioProxy\Pymex.MVC.InventarioProxy.ResponseWithDataDataContractOfArrayOfSalidaDCXmnxQzc5.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\InventarioProxy\Pymex.MVC.InventarioProxy.ResponseWithDataDataContractOfEntradaDCXmnxQzc5.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\InventarioProxy\Pymex.MVC.InventarioProxy.ResponseWithDataDataContractOfSalidaDCXmnxQzc5.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\InventarioProxy\Pymex.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\InventarioProxy\Pymex1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\InventarioProxy\Pymex2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\InventarioProxy\Pymex3.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\ProductoProxy\ProductoService.wsdl" />
     <None Include="Connected Services\AlmacenProxy\Pymex.disco" />
     <None Include="Connected Services\AlmacenProxy\configuration91.svcinfo" />
@@ -266,6 +306,13 @@
     <None Include="Connected Services\ClienteProxy\configuration91.svcinfo" />
     <None Include="Connected Services\ClienteProxy\configuration.svcinfo" />
     <None Include="Connected Services\ClienteProxy\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\InventarioProxy\Pymex.disco" />
+    <None Include="Connected Services\InventarioProxy\configuration91.svcinfo" />
+    <None Include="Connected Services\InventarioProxy\configuration.svcinfo" />
+    <None Include="Connected Services\InventarioProxy\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -565,6 +612,8 @@
     <Content Include="Views\Proveedor\Details.cshtml" />
     <Content Include="Views\Proveedor\Create.cshtml" />
     <Content Include="Views\Proveedor\Edit.cshtml" />
+    <Content Include="Views\Entrada\Index.cshtml" />
+    <Content Include="Views\Salida\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -587,6 +636,7 @@
     <WCFMetadataStorage Include="Connected Services\AlmacenProxy\" />
     <WCFMetadataStorage Include="Connected Services\CategoriaProxy\" />
     <WCFMetadataStorage Include="Connected Services\ClienteProxy\" />
+    <WCFMetadataStorage Include="Connected Services\InventarioProxy\" />
     <WCFMetadataStorage Include="Connected Services\ProductoProxy\" />
     <WCFMetadataStorage Include="Connected Services\ProveedorProxy\" />
     <WCFMetadataStorage Include="Connected Services\UsuarioProxy\" />
