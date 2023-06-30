@@ -10,7 +10,7 @@ namespace Pymex.MVC
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             // Map custom routes
-            //routes.MapMvcAttributeRoutes();
+            routes.MapMvcAttributeRoutes();
 
             routes.MapRoute(
                 name: "Default",
