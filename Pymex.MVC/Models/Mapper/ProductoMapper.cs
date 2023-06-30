@@ -1,24 +1,11 @@
 ﻿using Pymex.MVC.Cache;
 using Pymex.MVC.Models.Mapper.Contracts;
 using Pymex.MVC.ProductoProxy;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace Pymex.MVC.Models.Mapper
 {
     public class ProductoMapper : IGenericMapper<ProductoDC, Producto>, IModelDetailMapper<ProductoDC, ProductoDetail>
     {
-
-        IGenericMapper<CategoriaDC, Categoria> _categoriaMapper;
-        IGenericMapper<AlmacenDC, Almacen> _almacenMapper;
-
-        public ProductoMapper()
-        {
-            _categoriaMapper = new CategoriaMapper();
-            _almacenMapper = new AlmacenMapper();
-        }
 
         public ProductoDC ToDataContract(Producto model)
         {

@@ -1,9 +1,6 @@
 ﻿using Pymex.MVC.Models.Mapper.Contracts;
 using Pymex.MVC.ProductoProxy;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 
 namespace Pymex.MVC.Models.Mapper
 {

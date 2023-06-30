@@ -1,0 +1,142 @@
+﻿@model IEnumerable<Pymex.MVC.Models.Cliente>
+
+@{
+    ViewBag.Title = "Clientes";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+@section styles {
+    @Styles.Render("~/Content/table")
+}
+
+@if(ViewBag.SuccessMessage != null)
+    {
+        <div class="alert alert-success alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            @ViewBag.SuccessMessage
+        </div>
+    }
+
+@if(ViewBag.ErrorMessage != null)
+    {
+        <div class="alert alert-danger alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            @ViewBag.ErrorMessage
+        </div>
+    }
+
+<!-- DataTable -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3 d-flex justify-content-between">
+        <h2 class="m-0 font-weight-bold text-primary">Clientes</h2>
+        @Html.ActionLink("Crear Cliente", "Create", "Cliente", new { area = "" }, new { @class = "btn btn-primary" })
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Acciones</th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Id)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.TipoDocumento)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.NumeroDocumento)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.NombreCompleto)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FechaRegistro)
+                        </th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Acciones</th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Id)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.TipoDocumento)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.NumeroDocumento)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.NombreCompleto)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FechaRegistro)
+                        </th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach(var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <a href="@Url.Action("Details", new { id = item.Id } )"><i class="fas fa-info-circle"></i></a> |
+                                <a href="@Url.Action("Edit", new { id = item.Id } )"><i class="fas fa-edit"></i></a> |
+                                <a href="#" class="delete" data-id="@item.Id">
+                                    <i class="fas fa-trash"></i>
+                                </a>
+                            </td>
+                            <td>@Html.DisplayFor(p => item.Id)</td>
+                            <td>@Html.DisplayFor(p => item.TipoDocumentoDescripcion)</td>
+                            <td>@Html.DisplayFor(p => item.NumeroDocumento)</td>
+                            <td>@Html.DisplayFor(p => item.NombreCompleto)</td>
+                            <td>@Html.DisplayFor(p => item.FechaRegistro)</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Active/Desactive Modal-->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">¿Desea eliminar este cliente?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Una vez eliminados, solo se guardará en un historial, pero ya no se podrá
+                visualizar aquí.
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                <form method="post" action="@Url.Action("Delete", "Cliente")" class="action-form">
+                    <input class="d-none" name="id" type="text"/>
+                    <button type="submit" class="btn btn-primary">Eliminar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    @Scripts.Render("~/bundles/datatable")
+
+    <script>
+        $(document).on("click", "a.delete", openModalPopUp);
+
+        function openModalPopUp() {
+            // Modal form
+            const form = $("#deleteModal").find(".action-form");
+            form.find("input[name='id']").val($(this).data("id"));
+ 
+            // Show modal
+            $("#deleteModal").modal();
+        }
+    </script>
+}

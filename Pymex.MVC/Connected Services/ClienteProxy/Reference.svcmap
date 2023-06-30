@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="b2b940a9-77d1-4d8b-99c1-0050c2cfbefd" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://NASATOASTER/PymexServices/Pymex.Services.ClienteService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="Pymex.xsd" MetadataType="Schema" ID="23a17d6c-9345-4682-aab0-46698521ae0b" SourceId="1" SourceUrl="http://nasatoaster/PymexServices/Pymex.Services.ClienteService.svc?xsd=xsd1" />
+    <MetadataFile FileName="Pymex1.xsd" MetadataType="Schema" ID="aedbf882-10c8-4cac-849c-77cbf762f52f" SourceId="1" SourceUrl="http://nasatoaster/PymexServices/Pymex.Services.ClienteService.svc?xsd=xsd0" />
+    <MetadataFile FileName="Pymex2.xsd" MetadataType="Schema" ID="8255b1d1-33d7-4f49-9aff-58145d37c72d" SourceId="1" SourceUrl="http://nasatoaster/PymexServices/Pymex.Services.ClienteService.svc?xsd=xsd3" />
+    <MetadataFile FileName="Pymex3.xsd" MetadataType="Schema" ID="53fcaf3d-6dc6-4d5b-aaed-9a96dc25661c" SourceId="1" SourceUrl="http://nasatoaster/PymexServices/Pymex.Services.ClienteService.svc?xsd=xsd2" />
+    <MetadataFile FileName="Pymex.disco" MetadataType="Disco" ID="7273535d-3802-4513-a587-e68e5673d652" SourceId="1" SourceUrl="http://nasatoaster/PymexServices/Pymex.Services.ClienteService.svc?disco" />
+    <MetadataFile FileName="ClienteService.wsdl" MetadataType="Wsdl" ID="e57624a5-f7c5-4309-b87b-c454b3f4c0d0" SourceId="1" SourceUrl="http://nasatoaster/PymexServices/Pymex.Services.ClienteService.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

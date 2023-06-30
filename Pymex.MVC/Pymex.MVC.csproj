@@ -134,6 +134,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Connected Services\ClienteProxy\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Connected Services\ProductoProxy\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -159,22 +164,21 @@
     </Compile>
     <Compile Include="Models\Almacen.cs" />
     <Compile Include="Models\Cliente.cs" />
-    <Compile Include="Models\CustomDataAnnotations\NotZeroOrLessValueAttribute.cs" />
     <Compile Include="Models\LoginAccount.cs" />
     <Compile Include="Models\Mapper\AlmacenMapper.cs" />
     <Compile Include="Models\Mapper\CategoriaMapper.cs" />
     <Compile Include="Models\Mapper\Contracts\IModelDetailMapper.cs" />
     <Compile Include="Models\Mapper\Contracts\IGenericMapper.cs" />
     <Compile Include="Models\Mapper\UsuarioMapper.cs" />
+    <Compile Include="Models\Persona.cs" />
     <Compile Include="Models\ProductoDetail.cs" />
     <Compile Include="Models\Usuario.cs" />
-    <Compile Include="Models\Mapper\ClienteMapper.cs" />
+    <Compile Include="Models\Mapper\PersonaMapper.cs" />
     <Compile Include="Models\Mapper\ProductoMapper.cs" />
     <Compile Include="Models\Mapper\ProveedorMapper.cs" />
     <Compile Include="Models\Producto.cs" />
     <Compile Include="Models\Proveedor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ValueObjects\TipoDocumento.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\AlmacenProxy\AlmacenService.wsdl" />
@@ -215,6 +219,28 @@
     <None Include="Connected Services\CategoriaProxy\Pymex2.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\ClienteProxy\ClienteService.wsdl" />
+    <Content Include="Connected Services\ClienteProxy\Pymex.MVC.ClienteProxy.ResponseDataContract.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ClienteProxy\Pymex.MVC.ClienteProxy.ResponseWithDataDataContractOfArrayOfClienteDCXmnxQzc5.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <Content Include="Connected Services\ClienteProxy\Pymex.MVC.ClienteProxy.ResponseWithDataDataContractOfClienteDCXmnxQzc5.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Connected Services\ClienteProxy\Pymex.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ClienteProxy\Pymex1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ClienteProxy\Pymex2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\ClienteProxy\Pymex3.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Connected Services\ProductoProxy\ProductoService.wsdl" />
     <None Include="Connected Services\AlmacenProxy\Pymex.disco" />
     <None Include="Connected Services\AlmacenProxy\configuration91.svcinfo" />
@@ -227,6 +253,13 @@
     <None Include="Connected Services\CategoriaProxy\configuration91.svcinfo" />
     <None Include="Connected Services\CategoriaProxy\configuration.svcinfo" />
     <None Include="Connected Services\CategoriaProxy\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Connected Services\ClienteProxy\Pymex.disco" />
+    <None Include="Connected Services\ClienteProxy\configuration91.svcinfo" />
+    <None Include="Connected Services\ClienteProxy\configuration.svcinfo" />
+    <None Include="Connected Services\ClienteProxy\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -489,11 +522,14 @@
     <Content Include="Views\Producto\Create.cshtml" />
     <Content Include="Views\Sistema\Index.cshtml" />
     <Content Include="Views\Usuario\Index.cshtml" />
+    <Content Include="Views\Cliente\Index.cshtml" />
+    <Content Include="Views\Cliente\Details.cshtml" />
+    <Content Include="Views\Cliente\Create.cshtml" />
+    <Content Include="Views\Cliente\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Account\" />
-    <Folder Include="Views\Cliente\" />
     <Folder Include="Views\ValidateSession\" />
   </ItemGroup>
   <ItemGroup>
@@ -511,6 +547,7 @@
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\AlmacenProxy\" />
     <WCFMetadataStorage Include="Connected Services\CategoriaProxy\" />
+    <WCFMetadataStorage Include="Connected Services\ClienteProxy\" />
     <WCFMetadataStorage Include="Connected Services\ProductoProxy\" />
     <WCFMetadataStorage Include="Connected Services\UsuarioProxy\" />
   </ItemGroup>

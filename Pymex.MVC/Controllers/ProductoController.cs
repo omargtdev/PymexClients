@@ -2,17 +2,10 @@
 using Pymex.MVC.CategoriaProxy;
 using Pymex.MVC.Filters;
 using Pymex.MVC.Models;
-using Pymex.MVC.Models.CustomDataAnnotations;
 using Pymex.MVC.Models.Mapper;
-using Pymex.MVC.Models.Mapper.Contracts;
 using Pymex.MVC.ProductoProxy;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.ServiceModel.Syndication;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.UI.WebControls;
 
 namespace Pymex.MVC.Controllers
 {
@@ -44,6 +37,11 @@ namespace Pymex.MVC.Controllers
             }
 
             var productos = response.Data.Select(p => _modelMapper.ToModel(p));
+            if (TempData["SuccessMessage"] != null) // Send message if exists
+                ViewBag.SuccessMessage = TempData["SuccessMessage"].ToString();
+
+            if (TempData["ErrorMessage"] != null) // Send message if exists
+                ViewBag.ErrorMessage = TempData["ErrorMessage"].ToString();
 
             return View(productos);
         }
@@ -54,6 +52,7 @@ namespace Pymex.MVC.Controllers
             var response = _productoService.ObtenerPorCodigo(codigo);
             if (!response.EsCorrecto)
             {
+                TempData["ErrorMessage"] = "No se pudieron cargar los datos. Inténtelo de nuevo.";
                 return RedirectToAction("Index");
             }
 
@@ -73,7 +72,6 @@ namespace Pymex.MVC.Controllers
         [HttpPost]
         public ActionResult Create([Bind(Exclude="Id")] Producto producto)
         {
-            //ModelState.Keys.Remove("Id"); // Ignorando la validacion
             if (!ModelState.IsValid)
             {
                 ViewBag.Almacenes = _almacenService.Listar().Data;
@@ -86,10 +84,11 @@ namespace Pymex.MVC.Controllers
             {
                 ViewBag.Almacenes = _almacenService.Listar().Data;
                 ViewBag.Categorias = _categoriaService.Listar().Data;
-                ModelState.AddModelError("ErrorResponse", response.Mensaje);
+                ViewBag.ErrorMessage = response.Mensaje;
                 return View();
             }
 
+            TempData["SuccessMessage"] = response.Mensaje;
             return RedirectToAction("Index");
         }
 
@@ -102,8 +101,8 @@ namespace Pymex.MVC.Controllers
 
             if (!(productoResponse.EsCorrecto && almacenesResponse.EsCorrecto && categoriasResponse.EsCorrecto))
             {
-                // Tell the error messages
-                return RedirectToAction("Home", "Index");
+                TempData["ErrorMessage"] = "No se pudieron cargar los datos. Inténtelo de nuevo.";
+                return RedirectToAction("Index");
             }
 
             var producto = _modelMapper.ToModel(productoResponse.Data);
@@ -129,10 +128,11 @@ namespace Pymex.MVC.Controllers
             {
                 ViewBag.Almacenes = _almacenService.Listar().Data;
                 ViewBag.Categorias = _categoriaService.Listar().Data;
-                ModelState.AddModelError("ErrorResponse", response.Mensaje);
+                ViewBag.ErrorMessage = response.Mensaje;
                 return View();
             }
 
+            TempData["SuccessMessage"] = "Se editó el producto correctamente";
             return RedirectToAction("Index");
 
         }
@@ -142,6 +142,10 @@ namespace Pymex.MVC.Controllers
         public ActionResult AlternarActivacion(string codigo, bool activar = false)
         {
             var response = _productoService.ActivarPorCodigo(_modelMapper.ToActivateDataContract(codigo, activar));
+            if (response.EsCorrecto)
+                TempData["SuccessMessage"] = response.Mensaje;
+            else
+                TempData["ErrorMessage"] = response.Mensaje;
             return RedirectToAction("Index");
         }
     }

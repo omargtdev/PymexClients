@@ -1,13 +1,5 @@
-﻿using Pymex.MVC.Filters;
-using Pymex.MVC.Models.CustomDataAnnotations;
-using Pymex.MVC.ProductoProxy;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Runtime.Remoting.Messaging;
-using System.Web;
 
 namespace Pymex.MVC.Models
 {
@@ -16,7 +8,7 @@ namespace Pymex.MVC.Models
         public int Id { get; set; }
 
         [Required(ErrorMessage = "El código es requrido.")]
-        //[StringLength(8, MinimumLength = 6, ErrorMessage = "Debe tener un mínimo de 6 y un máximo de 8 caracteres.")]
+        [StringLength(8, MinimumLength = 6, ErrorMessage = "Debe tener un mínimo de 6 y un máximo de 8 caracteres.")]
         public string Codigo { get; set; }
 
         [Required(ErrorMessage = "La descripción es requerida.")]

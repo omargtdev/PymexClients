@@ -3,10 +3,6 @@ using Pymex.MVC.Models;
 using Pymex.MVC.Models.Mapper;
 using Pymex.MVC.Models.Mapper.Contracts;
 using Pymex.MVC.UsuarioProxy;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Pymex.MVC.Controllers
@@ -26,10 +22,13 @@ namespace Pymex.MVC.Controllers
         public ActionResult Index()
         {
             // Si ya existe el usuario en la sesion, vuelve al inicio
-            if (Session["user"] != null)
+            if (UserLogged.Current != null)
             {
                 return RedirectToAction("Index", "Home");
             }
+
+            if (TempData["SuccessLogoutMessage"] != null)
+                ViewBag.SuccessLogoutMessage = TempData["SuccessLogoutMessage"].ToString();
 
             return View();
         }
@@ -48,7 +47,7 @@ namespace Pymex.MVC.Controllers
             var response = _usuarioService.Login(model.Username, model.Password);
             if(!response.EsCorrecto)
             {
-                ModelState.AddModelError("loginError", response.Mensaje);
+                ViewBag.LoginErrorMessage = response.Mensaje;
                 return View("Index");
             }
 
