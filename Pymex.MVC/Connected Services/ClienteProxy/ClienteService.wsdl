@@ -38,6 +38,12 @@
   <wsdl:message name="IClienteService_Eliminar_OutputMessage">
     <wsdl:part name="parameters" element="tns:EliminarResponse" />
   </wsdl:message>
+  <wsdl:message name="IClienteService_ListarPorExpresionYCantidad_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListarPorExpresionYCantidad" />
+  </wsdl:message>
+  <wsdl:message name="IClienteService_ListarPorExpresionYCantidad_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListarPorExpresionYCantidadResponse" />
+  </wsdl:message>
   <wsdl:portType name="IClienteService">
     <wsdl:operation name="Listar">
       <wsdl:input wsaw:Action="http://tempuri.org/IGenericServiceOf_ClienteDC/Listar" message="tns:IClienteService_Listar_InputMessage" />
@@ -58,6 +64,10 @@
     <wsdl:operation name="Eliminar">
       <wsdl:input wsaw:Action="http://tempuri.org/IDeleteOperationOf_ClienteDC/Eliminar" message="tns:IClienteService_Eliminar_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IDeleteOperationOf_ClienteDC/EliminarResponse" message="tns:IClienteService_Eliminar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarPorExpresionYCantidad">
+      <wsdl:input wsaw:Action="http://tempuri.org/IListarPorCantidadOperationOf_ClienteDC/ListarPorExpresionYCantidad" message="tns:IClienteService_ListarPorExpresionYCantidad_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IListarPorCantidadOperationOf_ClienteDC/ListarPorExpresionYCantidadResponse" message="tns:IClienteService_ListarPorExpresionYCantidad_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IClienteService" type="tns:IClienteService">
@@ -100,6 +110,15 @@
     </wsdl:operation>
     <wsdl:operation name="Eliminar">
       <soap:operation soapAction="http://tempuri.org/IDeleteOperationOf_ClienteDC/Eliminar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarPorExpresionYCantidad">
+      <soap:operation soapAction="http://tempuri.org/IListarPorCantidadOperationOf_ClienteDC/ListarPorExpresionYCantidad" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

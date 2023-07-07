@@ -178,11 +178,13 @@
     <Compile Include="Models\Almacen.cs" />
     <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\Entrada.cs" />
+    <Compile Include="Models\EntradaJsonCreate.cs" />
     <Compile Include="Models\LoginAccount.cs" />
     <Compile Include="Models\Mapper\AlmacenMapper.cs" />
     <Compile Include="Models\Mapper\CategoriaMapper.cs" />
     <Compile Include="Models\Mapper\Contracts\IModelDetailMapper.cs" />
     <Compile Include="Models\Mapper\Contracts\IGenericMapper.cs" />
+    <Compile Include="Models\Mapper\Contracts\ICreateMapper.cs" />
     <Compile Include="Models\Mapper\EntradaMapper.cs" />
     <Compile Include="Models\Mapper\SalidaMapper.cs" />
     <Compile Include="Models\Mapper\UsuarioMapper.cs" />
@@ -409,6 +411,7 @@
     <Content Include="Content\solid.min.css" />
     <Content Include="Content\svg-with-js.css" />
     <Content Include="Content\svg-with-js.min.css" />
+    <Content Include="Content\utils\spiner.css" />
     <Content Include="Content\v4-shims.css" />
     <Content Include="Content\v4-shims.min.css" />
     <Content Include="favicon.ico" />
@@ -418,6 +421,8 @@
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\custom\inventario\entrada.js" />
+    <Content Include="Scripts\custom\inventario\utils.js" />
     <Content Include="Scripts\datatables\datatables-demo.js" />
     <Content Include="Scripts\datatables\dataTables.bootstrap4.min.js" />
     <Content Include="Scripts\datatables\jquery.dataTables.min.js" />
@@ -614,6 +619,7 @@
     <Content Include="Views\Proveedor\Edit.cshtml" />
     <Content Include="Views\Entrada\Index.cshtml" />
     <Content Include="Views\Salida\Index.cshtml" />
+    <Content Include="Views\Entrada\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

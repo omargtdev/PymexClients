@@ -55,6 +55,21 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="ListarPorExpresionYCantidad">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="expresion" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="maxCantidad" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ListarPorExpresionYCantidadResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Pymex.Services.Contracts" minOccurs="0" name="ListarPorExpresionYCantidadResult" nillable="true" type="q7:ResponseWithDataDataContractOfArrayOfProductoDCXmnxQzc5" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="ObtenerPorCodigo">
     <xs:complexType>
       <xs:sequence>
@@ -65,7 +80,7 @@
   <xs:element name="ObtenerPorCodigoResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Pymex.Services.Contracts" minOccurs="0" name="ObtenerPorCodigoResult" nillable="true" type="q7:ResponseWithDataDataContractOfProductoDCXmnxQzc5" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Pymex.Services.Contracts" minOccurs="0" name="ObtenerPorCodigoResult" nillable="true" type="q8:ResponseWithDataDataContractOfProductoDCXmnxQzc5" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -77,21 +92,21 @@
   <xs:element name="ListarSoloActivosResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Pymex.Services.Contracts" minOccurs="0" name="ListarSoloActivosResult" nillable="true" type="q8:ResponseWithDataDataContractOfArrayOfProductoDCXmnxQzc5" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Pymex.Services.Contracts" minOccurs="0" name="ListarSoloActivosResult" nillable="true" type="q9:ResponseWithDataDataContractOfArrayOfProductoDCXmnxQzc5" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ActivarPorCodigo">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Pymex.Services.Contracts" minOccurs="0" name="producto" nillable="true" type="q9:ProductoDC" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Pymex.Services.Contracts" minOccurs="0" name="producto" nillable="true" type="q10:ProductoDC" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="ActivarPorCodigoResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Pymex.Services.Contracts" minOccurs="0" name="ActivarPorCodigoResult" nillable="true" type="q10:ResponseDataContract" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Pymex.Services.Contracts" minOccurs="0" name="ActivarPorCodigoResult" nillable="true" type="q11:ResponseDataContract" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

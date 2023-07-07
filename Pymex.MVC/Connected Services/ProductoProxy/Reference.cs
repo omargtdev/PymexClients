@@ -618,6 +618,16 @@ namespace Pymex.MVC.ProductoProxy {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGenericServiceOf_ProductoDC/Actualizar", ReplyAction="http://tempuri.org/IGenericServiceOf_ProductoDC/ActualizarResponse")]
         System.Threading.Tasks.Task<Pymex.MVC.ProductoProxy.ResponseDataContract> ActualizarAsync(Pymex.MVC.ProductoProxy.ProductoDC dataContract);
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IListarPorCantidadOperationOf_ProductoDC/ListarPorExpresionYCa" +
+            "ntidad", ReplyAction="http://tempuri.org/IListarPorCantidadOperationOf_ProductoDC/ListarPorExpresionYCa" +
+            "ntidadResponse")]
+        Pymex.MVC.ProductoProxy.ResponseWithDataDataContractOfArrayOfProductoDCXmnxQzc5 ListarPorExpresionYCantidad(string expresion, int maxCantidad);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IListarPorCantidadOperationOf_ProductoDC/ListarPorExpresionYCa" +
+            "ntidad", ReplyAction="http://tempuri.org/IListarPorCantidadOperationOf_ProductoDC/ListarPorExpresionYCa" +
+            "ntidadResponse")]
+        System.Threading.Tasks.Task<Pymex.MVC.ProductoProxy.ResponseWithDataDataContractOfArrayOfProductoDCXmnxQzc5> ListarPorExpresionYCantidadAsync(string expresion, int maxCantidad);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductoService/ObtenerPorCodigo", ReplyAction="http://tempuri.org/IProductoService/ObtenerPorCodigoResponse")]
         Pymex.MVC.ProductoProxy.ResponseWithDataDataContractOfProductoDCXmnxQzc5 ObtenerPorCodigo(string codigo);
         
@@ -694,6 +704,14 @@ namespace Pymex.MVC.ProductoProxy {
         
         public System.Threading.Tasks.Task<Pymex.MVC.ProductoProxy.ResponseDataContract> ActualizarAsync(Pymex.MVC.ProductoProxy.ProductoDC dataContract) {
             return base.Channel.ActualizarAsync(dataContract);
+        }
+        
+        public Pymex.MVC.ProductoProxy.ResponseWithDataDataContractOfArrayOfProductoDCXmnxQzc5 ListarPorExpresionYCantidad(string expresion, int maxCantidad) {
+            return base.Channel.ListarPorExpresionYCantidad(expresion, maxCantidad);
+        }
+        
+        public System.Threading.Tasks.Task<Pymex.MVC.ProductoProxy.ResponseWithDataDataContractOfArrayOfProductoDCXmnxQzc5> ListarPorExpresionYCantidadAsync(string expresion, int maxCantidad) {
+            return base.Channel.ListarPorExpresionYCantidadAsync(expresion, maxCantidad);
         }
         
         public Pymex.MVC.ProductoProxy.ResponseWithDataDataContractOfProductoDCXmnxQzc5 ObtenerPorCodigo(string codigo) {

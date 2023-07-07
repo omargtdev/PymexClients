@@ -2,6 +2,7 @@
 using Pymex.MVC.Models.Mapper;
 using Pymex.MVC.Models.Mapper.Contracts;
 using Pymex.MVC.ProveedorProxy;
+using System;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -118,6 +119,18 @@ namespace Pymex.MVC.Controllers
                 TempData["ErrorMessage"] = response.Mensaje;
 
             return RedirectToAction("Index");
+        }
+
+        public JsonResult GetProveedores(string expresion)
+        {
+            var response = _proveedorService.ListarPorExpresionYCantidad(expresion, 15);
+            if (!response.EsCorrecto)
+            {
+                return Json(new { status = response.EsCorrecto, message = response.Mensaje }, JsonRequestBehavior.AllowGet);
+            }
+
+            var proveedores = response.Data.Select(p => _modelMapper.ToModel(p));
+            return Json(proveedores, JsonRequestBehavior.AllowGet);
         }
     }
 }

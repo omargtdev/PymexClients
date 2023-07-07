@@ -38,7 +38,7 @@ namespace Pymex.MVC.InventarioProxy {
         private Pymex.MVC.InventarioProxy.HistorialSeguimientoDC HistorialSeguimientoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Pymex.MVC.InventarioProxy.EntradaDetalleDC[] DetalleProductosField;
+        private System.Collections.Generic.List<Pymex.MVC.InventarioProxy.EntradaDetalleDC> DetalleProductosField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string UsuarioAccionField;
@@ -119,7 +119,7 @@ namespace Pymex.MVC.InventarioProxy {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(Order=5)]
-        public Pymex.MVC.InventarioProxy.EntradaDetalleDC[] DetalleProductos {
+        public System.Collections.Generic.List<Pymex.MVC.InventarioProxy.EntradaDetalleDC> DetalleProductos {
             get {
                 return this.DetalleProductosField;
             }
@@ -939,10 +939,10 @@ namespace Pymex.MVC.InventarioProxy {
     public partial class ResponseWithDataDataContractOfArrayOfSalidaDCXmnxQzc5 : Pymex.MVC.InventarioProxy.ResponseDataContract {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Pymex.MVC.InventarioProxy.SalidaDC[] DataField;
+        private System.Collections.Generic.List<Pymex.MVC.InventarioProxy.SalidaDC> DataField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Pymex.MVC.InventarioProxy.SalidaDC[] Data {
+        public System.Collections.Generic.List<Pymex.MVC.InventarioProxy.SalidaDC> Data {
             get {
                 return this.DataField;
             }
@@ -962,10 +962,10 @@ namespace Pymex.MVC.InventarioProxy {
     public partial class ResponseWithDataDataContractOfArrayOfEntradaDCXmnxQzc5 : Pymex.MVC.InventarioProxy.ResponseDataContract {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Pymex.MVC.InventarioProxy.EntradaDC[] DataField;
+        private System.Collections.Generic.List<Pymex.MVC.InventarioProxy.EntradaDC> DataField;
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public Pymex.MVC.InventarioProxy.EntradaDC[] Data {
+        public System.Collections.Generic.List<Pymex.MVC.InventarioProxy.EntradaDC> Data {
             get {
                 return this.DataField;
             }
@@ -1049,7 +1049,7 @@ namespace Pymex.MVC.InventarioProxy {
         private Pymex.MVC.InventarioProxy.HistorialSeguimientoDC HistorialSeguimientoField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private Pymex.MVC.InventarioProxy.SalidaDetalleDC[] DetalleProductosField;
+        private System.Collections.Generic.List<Pymex.MVC.InventarioProxy.SalidaDetalleDC> DetalleProductosField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string UsuarioAccionField;
@@ -1130,7 +1130,7 @@ namespace Pymex.MVC.InventarioProxy {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute(Order=5)]
-        public Pymex.MVC.InventarioProxy.SalidaDetalleDC[] DetalleProductos {
+        public System.Collections.Generic.List<Pymex.MVC.InventarioProxy.SalidaDetalleDC> DetalleProductos {
             get {
                 return this.DetalleProductosField;
             }

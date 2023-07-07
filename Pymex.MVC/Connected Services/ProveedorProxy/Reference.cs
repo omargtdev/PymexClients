@@ -384,6 +384,16 @@ namespace Pymex.MVC.ProveedorProxy {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDeleteOperationOf_ProveedorDC/Eliminar", ReplyAction="http://tempuri.org/IDeleteOperationOf_ProveedorDC/EliminarResponse")]
         System.Threading.Tasks.Task<Pymex.MVC.ProveedorProxy.ResponseDataContract> EliminarAsync(int id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IListarPorCantidadOperationOf_ProveedorDC/ListarPorExpresionYC" +
+            "antidad", ReplyAction="http://tempuri.org/IListarPorCantidadOperationOf_ProveedorDC/ListarPorExpresionYC" +
+            "antidadResponse")]
+        Pymex.MVC.ProveedorProxy.ResponseWithDataDataContractOfArrayOfProveedorDCXmnxQzc5 ListarPorExpresionYCantidad(string expresion, int maxCantidad);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IListarPorCantidadOperationOf_ProveedorDC/ListarPorExpresionYC" +
+            "antidad", ReplyAction="http://tempuri.org/IListarPorCantidadOperationOf_ProveedorDC/ListarPorExpresionYC" +
+            "antidadResponse")]
+        System.Threading.Tasks.Task<Pymex.MVC.ProveedorProxy.ResponseWithDataDataContractOfArrayOfProveedorDCXmnxQzc5> ListarPorExpresionYCantidadAsync(string expresion, int maxCantidad);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -451,6 +461,14 @@ namespace Pymex.MVC.ProveedorProxy {
         
         public System.Threading.Tasks.Task<Pymex.MVC.ProveedorProxy.ResponseDataContract> EliminarAsync(int id) {
             return base.Channel.EliminarAsync(id);
+        }
+        
+        public Pymex.MVC.ProveedorProxy.ResponseWithDataDataContractOfArrayOfProveedorDCXmnxQzc5 ListarPorExpresionYCantidad(string expresion, int maxCantidad) {
+            return base.Channel.ListarPorExpresionYCantidad(expresion, maxCantidad);
+        }
+        
+        public System.Threading.Tasks.Task<Pymex.MVC.ProveedorProxy.ResponseWithDataDataContractOfArrayOfProveedorDCXmnxQzc5> ListarPorExpresionYCantidadAsync(string expresion, int maxCantidad) {
+            return base.Channel.ListarPorExpresionYCantidadAsync(expresion, maxCantidad);
         }
     }
 }

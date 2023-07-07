@@ -148,5 +148,17 @@ namespace Pymex.MVC.Controllers
                 TempData["ErrorMessage"] = response.Mensaje;
             return RedirectToAction("Index");
         }
+
+        public JsonResult GetProductos(string expresion)
+        {
+            var response = _productoService.ListarPorExpresionYCantidad(expresion, 15);
+            if (!response.EsCorrecto)
+            {
+                return Json(new { status = response.EsCorrecto, message = response.Mensaje }, JsonRequestBehavior.AllowGet);
+            }
+
+            var proveedores = response.Data.Select(p => _modelMapper.ToModel(p));
+            return Json(proveedores, JsonRequestBehavior.AllowGet);
+        }
     }
 }

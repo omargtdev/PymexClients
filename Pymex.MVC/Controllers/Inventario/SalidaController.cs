@@ -1,4 +1,5 @@
-﻿using Pymex.MVC.InventarioProxy;
+﻿using Pymex.MVC.Filters;
+using Pymex.MVC.InventarioProxy;
 using Pymex.MVC.Models;
 using Pymex.MVC.Models.Mapper;
 using Pymex.MVC.Models.Mapper.Contracts;
@@ -8,6 +9,7 @@ using System.Web.Mvc;
 namespace Pymex.MVC.Controllers.Inventario
 {
     [RoutePrefix("Inventario/Salida")]
+    [ValidateSession]
     public class SalidaController : Controller
     {
 

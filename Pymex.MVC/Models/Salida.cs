@@ -11,7 +11,7 @@ namespace Pymex.MVC.Models
 
         [DisplayName("Fecha Registro")]
         [Required]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy HH:mm}")]
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}")]
         public DateTime FechaRegistro { get; set; }
 
         [Required]

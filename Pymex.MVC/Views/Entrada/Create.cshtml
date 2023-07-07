@@ -1,0 +1,204 @@
+﻿@{
+    ViewBag.Title = "Registrar Entrada";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+@section styles {
+    @Styles.Render("~/Content/table")
+    @Styles.Render("~/Content/utils/spiner.css")
+
+    <style>
+        #tableProviderResult tbody tr,
+        #tableProductResult tbody tr {
+            cursor: pointer;
+        }
+    </style>
+}
+
+@if (ViewBag.SuccessMessage != null)
+{
+    <div class="alert alert-success alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        @ViewBag.SuccessMessage
+    </div>
+}
+
+@if (ViewBag.ErrorMessage != null)
+{
+    <div class="alert alert-danger alert-dismissible">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        @ViewBag.ErrorMessage
+    </div>
+}
+
+<!-- Form -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3 d-flex justify-content-between">
+        <h2 class="m-0 font-weight-bold text-primary">Registrar Entrada</h2>
+    </div>
+    <div class="container mt-3" id="mainContainerMessage">
+    </div>
+    <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="d-flex">
+                <div class="d-flex align-items-center">
+                    <label for="fechaRegistro" class="w-100 mr-3">Fecha Registro: </label>
+                    <input class="form-control" name="fechaRegistro" id="fechaRegistro" type="date" />
+                </div>
+                <div class="d-flex align-items-center">
+                    <label for="fechaRegistro" class="m-3">Proveedor: </label>
+                    <input class="form-control" style="min-width: 300px" placeholder="Seleccione el proveedor..." id="providerDescription" readonly type="text" />
+                    @* Hide provider Id input *@
+                    <input class="d-none" name="proveedorId" id="providerId" type="text" />
+
+                    <button class="btn btn-secondary ml-3" data-toggle="modal" data-target="#searchProviderModal">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+            </div>
+            <div>
+            <button class="btn btn-primary" id="register">Registrar</button>
+            </div>
+        </div>
+
+        @* Product Table *@
+        <div class="card shadow mb-2 mt-3">
+            <div class="card-header py-3 d-flex justify-content-between">
+                <h5 class="m-0 font-weight-bold text-primary">Productos</h5>
+                <button class="btn btn-primary" id="addProduct">
+                    <i class="fas fa-cart-plus"></i>
+                </button>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" id="productTable" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>Acciones</th>
+                                <th class="d-none">
+                                    Id
+                                </th>
+                                <th>
+                                    Codigo 
+                                </th>
+                                <th>
+                                    Descripcion 
+                                </th>
+                                <th>
+                                    Precio Compra Unidad
+                                </th>
+                                <th>
+                                    Precio Venta Unidad
+                                </th>
+                                <th>
+                                    Cantidad
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* Search Provider Modal *@
+<div class="modal fade" id="searchProviderModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Seleccionar proveedor</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @* Search form *@
+                <form class="form-inline">
+                    <label class="sr-only" for="providerByName">Nombre</label>
+                    <input type="text" class="form-control mb-2 mr-sm-2" id="providerByName" placeholder="Nombre...">
+
+                    <button type="submit" class="btn btn-primary mb-2">Buscar</button>
+                </form>
+                
+                @* Result of query *@
+                <table class="table table-bordered table-hover mt-3" id="tableProviderResult">
+                    <thead>
+                        <tr>
+                            <th class="d-none">
+                                Id
+                            </th>
+                            <th>
+                                Numero Documento
+                            </th>
+                            <th>
+                                Nombre
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @* Content here *@
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                <button class="btn btn-primary" type="button" id="selectProvider">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* Search Product Modal *@
+<div class="modal fade" id="searchProductModal" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Seleccionar producto</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @* Search form *@
+                <form class="form-inline">
+                    <label class="sr-only" for="productByDescription">Nombre</label>
+                    <input type="text" class="form-control mb-2 mr-sm-2" id="productByDescription" placeholder="Nombre...">
+
+                    <button type="submit" class="btn btn-primary mb-2">Buscar</button>
+                </form>
+                
+                @* Result of query *@
+                <table class="table table-bordered table-hover mt-3" id="tableProductResult">
+                    <thead>
+                        <tr>
+                            <th class="d-none">
+                                Id
+                            </th>
+                            <th>
+                                Codigo
+                            </th>
+                            <th>
+                                Descripcion
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @* Content here *@
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                <button class="btn btn-primary" type="button" id="selectProduct">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/Scripts/custom/inventario/utils.js");
+    @Scripts.Render("~/Scripts/custom/inventario/entrada.js");
+}

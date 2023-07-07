@@ -32,6 +32,12 @@
   <wsdl:message name="IProductoService_Actualizar_OutputMessage">
     <wsdl:part name="parameters" element="tns:ActualizarResponse" />
   </wsdl:message>
+  <wsdl:message name="IProductoService_ListarPorExpresionYCantidad_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListarPorExpresionYCantidad" />
+  </wsdl:message>
+  <wsdl:message name="IProductoService_ListarPorExpresionYCantidad_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListarPorExpresionYCantidadResponse" />
+  </wsdl:message>
   <wsdl:message name="IProductoService_ObtenerPorCodigo_InputMessage">
     <wsdl:part name="parameters" element="tns:ObtenerPorCodigo" />
   </wsdl:message>
@@ -66,6 +72,10 @@
     <wsdl:operation name="Actualizar">
       <wsdl:input wsaw:Action="http://tempuri.org/IGenericServiceOf_ProductoDC/Actualizar" message="tns:IProductoService_Actualizar_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IGenericServiceOf_ProductoDC/ActualizarResponse" message="tns:IProductoService_Actualizar_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarPorExpresionYCantidad">
+      <wsdl:input wsaw:Action="http://tempuri.org/IListarPorCantidadOperationOf_ProductoDC/ListarPorExpresionYCantidad" message="tns:IProductoService_ListarPorExpresionYCantidad_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IListarPorCantidadOperationOf_ProductoDC/ListarPorExpresionYCantidadResponse" message="tns:IProductoService_ListarPorExpresionYCantidad_OutputMessage" />
     </wsdl:operation>
     <wsdl:operation name="ObtenerPorCodigo">
       <wsdl:input wsaw:Action="http://tempuri.org/IProductoService/ObtenerPorCodigo" message="tns:IProductoService_ObtenerPorCodigo_InputMessage" />
@@ -111,6 +121,15 @@
     </wsdl:operation>
     <wsdl:operation name="Actualizar">
       <soap:operation soapAction="http://tempuri.org/IGenericServiceOf_ProductoDC/Actualizar" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarPorExpresionYCantidad">
+      <soap:operation soapAction="http://tempuri.org/IListarPorCantidadOperationOf_ProductoDC/ListarPorExpresionYCantidad" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

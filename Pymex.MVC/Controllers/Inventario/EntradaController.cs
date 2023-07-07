@@ -1,18 +1,23 @@
-﻿using Pymex.MVC.InventarioProxy;
+﻿using Newtonsoft.Json;
+using Pymex.MVC.Filters;
+using Pymex.MVC.InventarioProxy;
 using Pymex.MVC.Models;
 using Pymex.MVC.Models.Mapper;
 using Pymex.MVC.Models.Mapper.Contracts;
+using System;
+using System.IO;
 using System.Linq;
 using System.Web.Mvc;
 
 namespace Pymex.MVC.Controllers.Inventario
 {
     [RoutePrefix("Inventario/Entrada")]
+    [ValidateSession]
     public class EntradaController : Controller
     {
 
         private readonly IInventarioService _inventarioService = new InventarioServiceClient();
-        private readonly IGenericMapper<EntradaDC, Entrada> _modelMapper = new EntradaMapper();
+        private readonly EntradaMapper _modelMapper = new EntradaMapper();
 
         // GET: Entrada
         [Route]
@@ -36,25 +41,34 @@ namespace Pymex.MVC.Controllers.Inventario
         }
 
         // GET: Entrada/Create
+        [Route("Create")]
         public ActionResult Create()
         {
             return View();
         }
 
         // POST: Entrada/Create
+        [Route("Create")]
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public JsonResult RegistrarEntrada()
         {
+            // Get json body
+            var request = Request.InputStream;
+            var json = new StreamReader(request).ReadToEnd();
             try
             {
-                // TODO: Add insert logic here
+                var entrada = JsonConvert.DeserializeObject<EntradaJsonCreate>(json);
+                var response = _inventarioService.RegistrarEntrada(_modelMapper.ToCreateDataContract(entrada));
+                if (!response.EsCorrecto)
+                    throw new Exception(response.Mensaje);
 
-                return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return Json(new { status = false, message = "Hubo un error al registrar la entrada." }, JsonRequestBehavior.AllowGet);
             }
+
+            return Json(new { status = true, message = "Se ingresó la entrada correctamente!" }, JsonRequestBehavior.AllowGet);
         }
 
         // GET: Entrada/Edit/5
