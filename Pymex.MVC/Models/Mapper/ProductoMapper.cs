@@ -34,6 +34,7 @@ namespace Pymex.MVC.Models.Mapper
                 Activo = dataContract.Activo,
                 UltimoPrecioCompra = dataContract.UltimoPrecioCompra,
                 UltimoPrecioVenta = dataContract.UltimoPrecioVenta,
+                Stock = dataContract.Stock,
                 FechaRegistro = dataContract.HistorialSeguimiento.FechaRegistro
             };
         }

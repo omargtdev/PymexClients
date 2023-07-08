@@ -157,7 +157,19 @@ namespace Pymex.MVC.Controllers
                 return Json(new { status = response.EsCorrecto, message = response.Mensaje }, JsonRequestBehavior.AllowGet);
             }
 
-            var proveedores = response.Data.Select(p => _modelMapper.ToModel(p));
+            var proveedores = response.Data.Select(p => _modelMapper.ToDetailModel(p));
+            return Json(proveedores, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetProductosConStock(string descripcion)
+        {
+            var response = _productoService.ListarProductosConStockPorCantidad(descripcion, 15);
+            if (!response.EsCorrecto)
+            {
+                return Json(new { status = response.EsCorrecto, message = response.Mensaje }, JsonRequestBehavior.AllowGet);
+            }
+
+            var proveedores = response.Data.Select(p => _modelMapper.ToDetailModel(p));
             return Json(proveedores, JsonRequestBehavior.AllowGet);
         }
     }

@@ -1,8 +1,11 @@
-﻿using Pymex.MVC.Filters;
+﻿using Newtonsoft.Json;
+using Pymex.MVC.Filters;
 using Pymex.MVC.InventarioProxy;
 using Pymex.MVC.Models;
 using Pymex.MVC.Models.Mapper;
 using Pymex.MVC.Models.Mapper.Contracts;
+using System;
+using System.IO;
 using System.Linq;
 using System.Web.Mvc;
 
@@ -14,7 +17,7 @@ namespace Pymex.MVC.Controllers.Inventario
     {
 
         private readonly IInventarioService _inventarioService = new InventarioServiceClient();
-        private readonly IGenericMapper<SalidaDC, Salida> _modelMapper = new SalidaMapper();
+        private readonly SalidaMapper _modelMapper = new SalidaMapper();
 
         // GET: Salida
         [Route]
@@ -38,25 +41,33 @@ namespace Pymex.MVC.Controllers.Inventario
         }
 
         // GET: Salida/Create
+        [Route("Create")]
         public ActionResult Create()
         {
             return View();
         }
 
         // POST: Salida/Create
+        [Route("Create")]
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public JsonResult RegistrarSalida()
         {
+            // Get json body
+            var request = Request.InputStream;
+            var json = new StreamReader(request).ReadToEnd();
             try
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                var salida = JsonConvert.DeserializeObject<SalidaJsonCreate>(json);
+                var response = _inventarioService.RegistrarSalida(_modelMapper.ToCreateDataContract(salida));
+                if (!response.EsCorrecto)
+                    throw new Exception();
             }
             catch
             {
-                return View();
+                return Json(new { status = false, message = "Hubo un error al registrar la salida." }, JsonRequestBehavior.AllowGet);
             }
+
+            return Json(new { status = true, message = "Se ingresó la salida correctamente!" }, JsonRequestBehavior.AllowGet);
         }
 
         // GET: Salida/Edit/5

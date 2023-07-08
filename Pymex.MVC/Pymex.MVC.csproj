@@ -191,6 +191,7 @@
     <Compile Include="Models\Persona.cs" />
     <Compile Include="Models\ProductoDetail.cs" />
     <Compile Include="Models\Salida.cs" />
+    <Compile Include="Models\SalidaJsonCreate.cs" />
     <Compile Include="Models\Sistema.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Models\Mapper\PersonaMapper.cs" />
@@ -404,6 +405,7 @@
     <Content Include="Content\datatables\dataTables.bootstrap4.min.css" />
     <Content Include="Content\fontawesome.css" />
     <Content Include="Content\fontawesome.min.css" />
+    <Content Include="Content\Images\pymex-logo.png" />
     <Content Include="Content\regular.css" />
     <Content Include="Content\regular.min.css" />
     <Content Include="Content\sb-admin-2.min.css" />
@@ -422,6 +424,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\custom\inventario\entrada.js" />
+    <Content Include="Scripts\custom\inventario\salida.js" />
     <Content Include="Scripts\custom\inventario\utils.js" />
     <Content Include="Scripts\datatables\datatables-demo.js" />
     <Content Include="Scripts\datatables\dataTables.bootstrap4.min.js" />
@@ -620,6 +623,7 @@
     <Content Include="Views\Entrada\Index.cshtml" />
     <Content Include="Views\Salida\Index.cshtml" />
     <Content Include="Views\Entrada\Create.cshtml" />
+    <Content Include="Views\Salida\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -60,7 +60,7 @@ namespace Pymex.MVC.Controllers.Inventario
                 var entrada = JsonConvert.DeserializeObject<EntradaJsonCreate>(json);
                 var response = _inventarioService.RegistrarEntrada(_modelMapper.ToCreateDataContract(entrada));
                 if (!response.EsCorrecto)
-                    throw new Exception(response.Mensaje);
+                    throw new Exception();
 
             }
             catch

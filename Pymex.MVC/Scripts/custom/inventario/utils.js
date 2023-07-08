@@ -64,20 +64,19 @@ function createButton(icon, style, dataset = {}) {
     btn.style.marginRight = "2px";
     btn.style.padding = "3px";
     btn.innerHTML = `<i class="fas fa-${icon}"></i>`;
-    //btn.style.;
     return btn;
 }
 
-function createTableInput(type, inputClassName, isReadOnly, isHide = false, placeholder = "") {
+function createTableInput(settings = {}, isHide = false) {
     const td = document.createElement("td");
     td.className = isHide ? "d-none" : "";
 
     const input = document.createElement("input");
-    input.type = type;
-    input.placeholder = placeholder;
-    input.readOnly = isReadOnly;
-    input.className = inputClassName;
 
+    for (let property in settings) {
+        input[property] = settings[property];
+    }
+    
     td.appendChild(input);
     return td;
 }

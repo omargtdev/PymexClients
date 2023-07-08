@@ -56,6 +56,12 @@
   <wsdl:message name="IProductoService_ActivarPorCodigo_OutputMessage">
     <wsdl:part name="parameters" element="tns:ActivarPorCodigoResponse" />
   </wsdl:message>
+  <wsdl:message name="IProductoService_ListarProductosConStockPorCantidad_InputMessage">
+    <wsdl:part name="parameters" element="tns:ListarProductosConStockPorCantidad" />
+  </wsdl:message>
+  <wsdl:message name="IProductoService_ListarProductosConStockPorCantidad_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ListarProductosConStockPorCantidadResponse" />
+  </wsdl:message>
   <wsdl:portType name="IProductoService">
     <wsdl:operation name="Listar">
       <wsdl:input wsaw:Action="http://tempuri.org/IGenericServiceOf_ProductoDC/Listar" message="tns:IProductoService_Listar_InputMessage" />
@@ -88,6 +94,10 @@
     <wsdl:operation name="ActivarPorCodigo">
       <wsdl:input wsaw:Action="http://tempuri.org/IProductoService/ActivarPorCodigo" message="tns:IProductoService_ActivarPorCodigo_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IProductoService/ActivarPorCodigoResponse" message="tns:IProductoService_ActivarPorCodigo_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ListarProductosConStockPorCantidad">
+      <wsdl:input wsaw:Action="http://tempuri.org/IProductoService/ListarProductosConStockPorCantidad" message="tns:IProductoService_ListarProductosConStockPorCantidad_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IProductoService/ListarProductosConStockPorCantidadResponse" message="tns:IProductoService_ListarProductosConStockPorCantidad_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IProductoService" type="tns:IProductoService">
@@ -157,6 +167,15 @@
     </wsdl:operation>
     <wsdl:operation name="ActivarPorCodigo">
       <soap:operation soapAction="http://tempuri.org/IProductoService/ActivarPorCodigo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ListarProductosConStockPorCantidad">
+      <soap:operation soapAction="http://tempuri.org/IProductoService/ListarProductosConStockPorCantidad" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

@@ -120,5 +120,17 @@ namespace Pymex.MVC.Controllers
 
             return RedirectToAction("Index");
         }
+
+        public JsonResult GetClientes(string expresion)
+        {
+            var response = _clienteService.ListarPorExpresionYCantidad(expresion, 15);
+            if (!response.EsCorrecto)
+            {
+                return Json(new { status = response.EsCorrecto, message = response.Mensaje }, JsonRequestBehavior.AllowGet);
+            }
+
+            var proveedores = response.Data.Select(p => _modelMapper.ToModel(p));
+            return Json(proveedores, JsonRequestBehavior.AllowGet);
+        }
     }
 }

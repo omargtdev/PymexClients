@@ -1,11 +1,11 @@
-﻿// Provider modal
-const providerModal = document.querySelector("#searchProviderModal");
-const providerModalBody = providerModal.getElementsByClassName("modal-body")[0];
-const providerResultTable = providerModal.getElementsByTagName("tbody")[0];
+﻿// Client modal
+const clientModal = document.querySelector("#searchClientModal");
+const clientModalBody = clientModal.getElementsByClassName("modal-body")[0];
+const clientResultTable = clientModal.getElementsByTagName("tbody")[0];
 
-// Provider inputs
-const providerIdInput = document.getElementById("providerId");
-const providerDescriptionInput = document.getElementById("providerDescription");
+// Client inputs
+const clientIdInput = document.getElementById("clientId");
+const clientDescriptionInput = document.getElementById("clientDescription");
 
 // Product table
 const productsTable = document.querySelector("#productTable");
@@ -19,38 +19,38 @@ const productResultTable = productModal.getElementsByTagName("tbody")[0];
 // Product inputs
 const selectProductBtn = document.getElementById("selectProduct");
 
-// Search Provider events
-providerModal.getElementsByTagName("form")[0].addEventListener("submit", function(e) {
+// Search Client events
+clientModal.getElementsByTagName("form")[0].addEventListener("submit", function(e) {
     e.preventDefault();
 
-    const searchValue = this.providerByName.value?.trim();
+    const searchValue = this.clientByName.value?.trim();
     if (!searchValue)
         return;
 
     // Removing old rows
-    while (providerResultTable.hasChildNodes())
-        providerResultTable.removeChild(providerResultTable.firstChild)
+    while (clientResultTable.hasChildNodes())
+        clientResultTable.removeChild(clientResultTable.firstChild)
         
     // Waiting
     const spinner = makeWaitSpinner();
-    providerModalBody.appendChild(spinner);
+    clientModalBody.appendChild(spinner);
     
-    sendRequest(`/Proveedor/GetProveedores?expresion=${searchValue}`, "GET")
+    sendRequest(`/Cliente/GetClientes?expresion=${searchValue}`, "GET")
         // Removing the spinner
         .then(res => {
-            providerModalBody.removeChild(spinner);
+            clientModalBody.removeChild(spinner);
             return res;
         })
         .then(res => {
             // Adding rows with information
-            res.forEach(provider => {
-                providerResultTable.appendChild(createRowResult(
+            res.forEach(client => {
+                clientResultTable.appendChild(createRowResult(
                     { 
-                        id: provider.Id,
-                        documentNumber: provider.NumeroDocumento,
-                        name: provider.NombreCompleto
+                        id: client.Id,
+                        documentNumber: client.NumeroDocumento,
+                        name: client.NombreCompleto
                     },
-                    providerResultTable
+                    clientResultTable
                 ));
             })
         })
@@ -60,15 +60,15 @@ providerModal.getElementsByTagName("form")[0].addEventListener("submit", functio
 });
 
 
-document.getElementById("selectProvider").addEventListener("click", e => {
+document.getElementById("selectClient").addEventListener("click", e => {
     let selected = null;
 
-    if (!providerResultTable.hasChildNodes()) {
-        alert("Debe seleccionar un proveedor!");
+    if (!clientResultTable.hasChildNodes()) {
+        alert("Debe seleccionar un cliente!");
         return;
     }
 
-    for (let row of providerResultTable.rows) {
+    for (let row of clientResultTable.rows) {
         if (row.dataset.selected === "true") {
             selected = row;
             break;
@@ -76,18 +76,18 @@ document.getElementById("selectProvider").addEventListener("click", e => {
     }
 
     if (!selected) {
-        alert("Debe seleccionar un proveedor!");
+        alert("Debe seleccionar un cliente!");
         return;
     }
 
-    // Store in the provider input
-    const providerId = selected.children[0].textContent;
-    const providerDescription = `${selected.children[1].textContent} - ${selected.children[2].textContent}`;
-    providerIdInput.value = providerId;
-    providerDescriptionInput.value = providerDescription;
+    // Store in the client input
+    const clientId = selected.children[0].textContent;
+    const clientDescription = `${selected.children[1].textContent} - ${selected.children[2].textContent}`;
+    clientIdInput.value = clientId;
+    clientDescriptionInput.value = clientDescription;
 
     // Hiding modal
-    $("#searchProviderModal").modal("hide");
+    $("#searchClientModal").modal("hide");
 });
 
 
@@ -137,12 +137,29 @@ document.querySelector("#addProduct").addEventListener("click", e => {
     productNewRow.dataset.id = productsTableBody.children.length + 1;
     productNewRow.appendChild(buttonContainer);
 
+    const showPrices = e => {
+        const quantityInput = e.target;
+        const stockInput = quantityInput.parentElement.previousElementSibling.firstElementChild;
+        const unitPriceInput = stockInput.parentElement.previousElementSibling.firstElementChild;
+        const totalPriceInput = quantityInput.parentElement.nextElementSibling.firstElementChild;
+
+        if (stockInput.value == "")
+            return;
+
+        if (Number(quantityInput.value) > Number(stockInput.value)) {
+            quantityInput.value = stockInput.value;
+        }
+
+        totalPriceInput.value = Number(unitPriceInput.value) * Number(quantityInput.value);
+    }
+
     productNewRow.appendChild(createTableInput({ type: "text", className: "d-none" }, true)); // Id
     productNewRow.appendChild(createTableInput({ type: "text", className: "form-control", placeholder: "000000", readOnly: true })); // Code
     productNewRow.appendChild(createTableInput({ type: "text", className: "form-control", placeholder: "Descripcion...", readOnly: true })); // Description
-    productNewRow.appendChild(createTableInput({ type: "number", className: "form-control", placeholder: "S/. 0.00" })); // Price Buy
-    productNewRow.appendChild(createTableInput({ type: "number", className: "form-control", placeholder: "S/. 0.00" })); // Price Sell
-    productNewRow.appendChild(createTableInput({ type: "number", className: "form-control", placeholder: "0", min: 1, value: 1 })); // Quantity
+    productNewRow.appendChild(createTableInput({ type: "number", className: "form-control", placeholder: "S/. 0.00", readOnly: true })); // Price Sell
+    productNewRow.appendChild(createTableInput({ type: "number", className: "form-control", placeholder: "0", readOnly: true })); // Stock
+    productNewRow.appendChild(createTableInput({ type: "number", className: "form-control", min: 1, onchange: showPrices })); // Quantity
+    productNewRow.appendChild(createTableInput({ type: "number", className: "form-control", placeholder: "S/. 0.00", readOnly: true })); // Total Price
 
     productsTableBody.appendChild(productNewRow);
 });
@@ -162,7 +179,7 @@ productModal.getElementsByTagName("form")[0].addEventListener("submit", function
     const spinner = makeWaitSpinner();
     productModalBody.appendChild(spinner);
     
-    sendRequest(`/Producto/GetProductos?expresion=${searchValue}`, "GET")
+    sendRequest(`/Producto/GetProductosConStock?descripcion=${searchValue}`, "GET")
         // Removing the spinner
         .then(res => {
             productModalBody.removeChild(spinner);
@@ -175,7 +192,9 @@ productModal.getElementsByTagName("form")[0].addEventListener("submit", function
                     { 
                         id: producto.Id,
                         code: producto.Codigo,
-                        description: producto.Descripcion
+                        description: producto.Descripcion,
+                        unitSellPrice: producto.UltimoPrecioVenta,
+                        stock: producto.Stock,
                     },
                     productResultTable
                 ));
@@ -232,10 +251,17 @@ selectProductBtn.addEventListener("click", e => {
     const productIdFromRowInput = productSelectedToSearch.children[1].firstElementChild;
     const productCodeFromRowInput = productSelectedToSearch.children[2].firstElementChild;
     const productDescriptionFromRowInput = productSelectedToSearch.children[3].firstElementChild;
+    const productUnitSellPriceFromRowInput = productSelectedToSearch.children[4].firstElementChild;
+    const productStockFromRowInput = productSelectedToSearch.children[5].firstElementChild;
 
     productIdFromRowInput.value = selected.children[0].textContent;
     productCodeFromRowInput.value = selected.children[1].textContent;
     productDescriptionFromRowInput.value = selected.children[2].textContent;
+    productUnitSellPriceFromRowInput.value = selected.children[3].textContent;
+    productStockFromRowInput.value = selected.children[4].textContent;
+
+    productSelectedToSearch.children[6].firstElementChild.value = 1; // Quanitity
+    productSelectedToSearch.children[7].firstElementChild.value = Number(productUnitSellPriceFromRowInput.value); // Price
         
     // Hiding modal
     $("#searchProductModal").modal("hide");
@@ -250,8 +276,8 @@ document.getElementById("register").addEventListener("click", e => {
         return;
     }
 
-    const providerId = providerIdInput.value?.toString().trim();
-    if (!isNotNullOrEmpty(providerId)) {
+    const clientId = clientIdInput.value?.toString().trim();
+    if (!isNotNullOrEmpty(clientId)) {
         alert("Debe colocar un proveedor");
         return;
     }
@@ -265,19 +291,17 @@ document.getElementById("register").addEventListener("click", e => {
     const products = []
     // Valid all products' fields that are complete
     for (let row of productsTableBody.rows) {
-        const productIdToAdd = row.children[1].firstElementChild.value;
-        const unitPurchasePrice = row.children[4].firstElementChild.value;
-        const unitSalePrice = row.children[5].firstElementChild.value;
-        const quantity = row.children[6].firstElementChild.value;
+        const productIdToAdd = row.children[1].firstElementChild.value; // ProductId
+        const unitSalePrice = row.children[4].firstElementChild.value; // UnitPrice
+        const quantity = row.children[6].firstElementChild.value; // Quantity
 
-        if (!isNotNullOrEmpty(productIdToAdd) || !isNotNullOrEmpty(unitPurchasePrice) || !isNotNullOrEmpty(unitSalePrice) || !isNotNullOrEmpty(quantity)) {
+        if (!isNotNullOrEmpty(productIdToAdd) || !isNotNullOrEmpty(unitSalePrice) || !isNotNullOrEmpty(quantity)) {
             alert("Todos los campos de cada producto debe completarse!");
             return;
         }
 
         products.push({
             productId: Number(productIdToAdd),
-            unitPurchasePrice: Number(unitPurchasePrice),
             unitSalePrice: Number(unitSalePrice),
             quantity: Number(quantity)
         });
@@ -285,9 +309,9 @@ document.getElementById("register").addEventListener("click", e => {
 
     e.target.disabled = true;
 
-    sendRequest("/Inventario/Entrada/Create", "POST", {
+    sendRequest("/Inventario/Salida/Create", "POST", {
         registerDate,
-        providerId,
+        clientId,
         products
     })
         .then(res => {
@@ -300,8 +324,8 @@ document.getElementById("register").addEventListener("click", e => {
             if (status) {
                 // Clean Inputs
                 document.getElementById("fechaRegistro").value = "";
-                providerIdInput.value = "";
-                providerDescriptionInput.value = "";
+                clientIdInput.value = "";
+                clientDescriptionInput.value = "";
                 while (productsTableBody.hasChildNodes())
                     productsTableBody.removeChild(productsTableBody.firstChild);
 

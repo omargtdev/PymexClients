@@ -645,6 +645,12 @@ namespace Pymex.MVC.ProductoProxy {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductoService/ActivarPorCodigo", ReplyAction="http://tempuri.org/IProductoService/ActivarPorCodigoResponse")]
         System.Threading.Tasks.Task<Pymex.MVC.ProductoProxy.ResponseDataContract> ActivarPorCodigoAsync(Pymex.MVC.ProductoProxy.ProductoDC producto);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductoService/ListarProductosConStockPorCantidad", ReplyAction="http://tempuri.org/IProductoService/ListarProductosConStockPorCantidadResponse")]
+        Pymex.MVC.ProductoProxy.ResponseWithDataDataContractOfArrayOfProductoDCXmnxQzc5 ListarProductosConStockPorCantidad(string descripcion, int maxCantidad);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IProductoService/ListarProductosConStockPorCantidad", ReplyAction="http://tempuri.org/IProductoService/ListarProductosConStockPorCantidadResponse")]
+        System.Threading.Tasks.Task<Pymex.MVC.ProductoProxy.ResponseWithDataDataContractOfArrayOfProductoDCXmnxQzc5> ListarProductosConStockPorCantidadAsync(string descripcion, int maxCantidad);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -736,6 +742,14 @@ namespace Pymex.MVC.ProductoProxy {
         
         public System.Threading.Tasks.Task<Pymex.MVC.ProductoProxy.ResponseDataContract> ActivarPorCodigoAsync(Pymex.MVC.ProductoProxy.ProductoDC producto) {
             return base.Channel.ActivarPorCodigoAsync(producto);
+        }
+        
+        public Pymex.MVC.ProductoProxy.ResponseWithDataDataContractOfArrayOfProductoDCXmnxQzc5 ListarProductosConStockPorCantidad(string descripcion, int maxCantidad) {
+            return base.Channel.ListarProductosConStockPorCantidad(descripcion, maxCantidad);
+        }
+        
+        public System.Threading.Tasks.Task<Pymex.MVC.ProductoProxy.ResponseWithDataDataContractOfArrayOfProductoDCXmnxQzc5> ListarProductosConStockPorCantidadAsync(string descripcion, int maxCantidad) {
+            return base.Channel.ListarProductosConStockPorCantidadAsync(descripcion, maxCantidad);
         }
     }
 }

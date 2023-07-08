@@ -1,5 +1,6 @@
-﻿@{
-    ViewBag.Title = "Registrar Entrada";
+﻿
+@{
+    ViewBag.Title = "Registrar Salida";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
@@ -18,7 +19,7 @@
 <!-- Form -->
 <div class="card shadow mb-4">
     <div class="card-header py-3 d-flex justify-content-between">
-        <h2 class="m-0 font-weight-bold text-primary">Registrar Entrada</h2>
+        <h2 class="m-0 font-weight-bold text-primary">Registrar Salida</h2>
     </div>
     <div class="container mt-3" id="mainContainerMessage">
     </div>
@@ -30,12 +31,12 @@
                     <input class="form-control" name="fechaRegistro" id="fechaRegistro" type="date" />
                 </div>
                 <div class="d-flex align-items-center">
-                    <label for="fechaRegistro" class="m-3">Proveedor: </label>
-                    <input class="form-control" style="min-width: 300px" placeholder="Seleccione el proveedor..." id="providerDescription" readonly type="text" />
+                    <label for="fechaRegistro" class="m-3">Cliente: </label>
+                    <input class="form-control" style="min-width: 300px" placeholder="Seleccione el cliente..." id="clientDescription" readonly type="text" />
                     @* Hide provider Id input *@
-                    <input class="d-none" name="proveedorId" id="providerId" type="text" />
+                    <input class="d-none" name="clienteId" id="clientId" type="text" />
 
-                    <button class="btn btn-secondary ml-3" data-toggle="modal" data-target="#searchProviderModal">
+                    <button class="btn btn-secondary ml-3" data-toggle="modal" data-target="#searchClientModal">
                         <i class="fas fa-search"></i>
                     </button>
                 </div>
@@ -69,13 +70,16 @@
                                     Descripcion 
                                 </th>
                                 <th>
-                                    Precio Compra Unidad
+                                    Precio Unidad
                                 </th>
                                 <th>
-                                    Precio Venta Unidad
+                                    Stock
                                 </th>
                                 <th>
                                     Cantidad
+                                </th>
+                                <th>
+                                    Precio Total
                                 </th>
                             </tr>
                         </thead>
@@ -88,12 +92,12 @@
     </div>
 </div>
 
-@* Search Provider Modal *@
-<div class="modal fade" id="searchProviderModal" tabindex="-1" role="dialog" aria-hidden="true">
+@* Search Client Modal *@
+<div class="modal fade" id="searchClientModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Seleccionar proveedor</h5>
+                <h5 class="modal-title">Seleccionar cliente</h5>
                 <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">×</span>
                 </button>
@@ -101,14 +105,14 @@
             <div class="modal-body">
                 @* Search form *@
                 <form class="form-inline">
-                    <label class="sr-only" for="providerByName">Nombre</label>
-                    <input type="text" class="form-control mb-2 mr-sm-2" id="providerByName" placeholder="Nombre...">
+                    <label class="sr-only" for="clientByName">Nombre</label>
+                    <input type="text" class="form-control mb-2 mr-sm-2" id="clientByName" placeholder="Nombre...">
 
                     <button type="submit" class="btn btn-primary mb-2">Buscar</button>
                 </form>
                 
                 @* Result of query *@
-                <table class="table table-bordered table-hover mt-3" id="tableProviderResult">
+                <table class="table table-bordered table-hover mt-3" id="tableClientResult">
                     <thead>
                         <tr>
                             <th class="d-none">
@@ -129,7 +133,7 @@
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
-                <button class="btn btn-primary" type="button" id="selectProvider">Aceptar</button>
+                <button class="btn btn-primary" type="button" id="selectClient">Aceptar</button>
             </div>
         </div>
     </div>
@@ -167,6 +171,12 @@
                             <th>
                                 Descripcion
                             </th>
+                            <th>
+                                Precio Unidad
+                            </th>
+                            <th>
+                                Stock
+                            </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -184,5 +194,5 @@
 
 @section Scripts {
     @Scripts.Render("~/Scripts/custom/inventario/utils.js");
-    @Scripts.Render("~/Scripts/custom/inventario/entrada.js");
+    @Scripts.Render("~/Scripts/custom/inventario/salida.js");
 }
