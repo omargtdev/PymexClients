@@ -1,0 +1,101 @@
+﻿@model Pymex.MVC.Models.EntradaDetail
+
+@{
+    ViewBag.Title = "Detalle Entrada";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+@section styles {
+    @Styles.Render("~/Content/table")
+}
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3 d-flex justify-content-between">
+        <h2 class="m-0 font-weight-bold text-primary">Entrada Cod. @Model.Codigo</h2>
+        <a class="btn btn-secondary" href="~/Inventario/Entrada">Volver</a>
+    </div>
+
+    <div class="card-body">
+        @* Entrada data *@
+        <form>
+            <div class="row">
+                <div class="form-group col">
+                    <label>Fecha Registro:</label>
+                    <input class="form-control-plaintext font-weight-bold" readonly value="@Html.DisplayFor(model => model.FechaRegistro)"/>
+                </div>
+                <div class="form-group col">
+                    <label>Cantidad Total Productos:</label>
+                    <input class="form-control-plaintext font-weight-bold" readonly value="@Model.Productos.Sum(p => p.Cantidad)"/>
+                </div>
+            </div>
+        </form>
+
+        @* Provider data *@
+        <h4 class="font-weight-bold text-primary">Proveedor</h4>
+        <form>
+            <div class="row">
+                <div class="form-group col">
+                    <label>Nombre:</label>
+                    <input class="form-control-plaintext font-weight-bold" readonly value="@Model.Proveedor.NombreCompleto"/>
+                </div>
+                <div class="form-group col">
+                    <label>Documento:</label>
+                    <input class="form-control-plaintext font-weight-bold" readonly value="@Model.Proveedor.TipoDocumentoDescripcion - @Model.Proveedor.NumeroDocumento"/>
+                </div>
+            </div>
+        </form>
+
+        @* Product Table *@
+        <div class="card shadow mb-2 mt-3">
+            <div class="card-header py-3">
+                <h5 class="m-0 font-weight-bold text-primary">Productos</h5>
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Codigo 
+                                </th>
+                                <th>
+                                    Descripcion 
+                                </th>
+                                <th>
+                                    Categoria
+                                </th>
+                                <th>
+                                    Almacen
+                                </th>
+                                <th>
+                                    Precio Compra Unidad
+                                </th>
+                                <th>
+                                    Precio Venta Unidad
+                                </th>
+                                <th>
+                                    Cantidad
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @* Show Products *@
+                            @foreach (var producto in Model.Productos)
+                            {
+                                <tr>
+                                    <td>@producto.Producto.Codigo</td>
+                                    <td>@producto.Producto.Descripcion</td>
+                                    <td>@producto.Producto.CategoriaDescripcion</td>
+                                    <td>@producto.Producto.AlmacenDescripcion</td>
+                                    <td>@producto.PrecioCompraUnidad</td>
+                                    <td>@producto.PrecioVentaUnidad</td>
+                                    <td>@producto.Cantidad</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

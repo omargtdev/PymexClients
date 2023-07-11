@@ -178,7 +178,9 @@
     <Compile Include="Models\Almacen.cs" />
     <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\Entrada.cs" />
+    <Compile Include="Models\EntradaDetail.cs" />
     <Compile Include="Models\EntradaJsonCreate.cs" />
+    <Compile Include="Models\InventarioRegistroProducto.cs" />
     <Compile Include="Models\LoginAccount.cs" />
     <Compile Include="Models\Mapper\AlmacenMapper.cs" />
     <Compile Include="Models\Mapper\CategoriaMapper.cs" />
@@ -191,12 +193,12 @@
     <Compile Include="Models\Persona.cs" />
     <Compile Include="Models\ProductoDetail.cs" />
     <Compile Include="Models\Salida.cs" />
+    <Compile Include="Models\SalidaDetail.cs" />
     <Compile Include="Models\SalidaJsonCreate.cs" />
     <Compile Include="Models\Sistema.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Models\Mapper\PersonaMapper.cs" />
     <Compile Include="Models\Mapper\ProductoMapper.cs" />
-    <Compile Include="Models\Mapper\ProveedorMapper.cs" />
     <Compile Include="Models\Producto.cs" />
     <Compile Include="Models\Proveedor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -624,6 +626,8 @@
     <Content Include="Views\Salida\Index.cshtml" />
     <Content Include="Views\Entrada\Create.cshtml" />
     <Content Include="Views\Salida\Create.cshtml" />
+    <Content Include="Views\Entrada\Details.cshtml" />
+    <Content Include="Views\Salida\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

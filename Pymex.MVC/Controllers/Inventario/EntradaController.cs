@@ -34,10 +34,19 @@ namespace Pymex.MVC.Controllers.Inventario
             return View(entradas);
         }
 
-        // GET: Entrada/Details/5
-        public ActionResult Details(int id)
+        [Route("Details")]
+        public ActionResult Details(string codigo)
         {
-            return View();
+            var response = _inventarioService.BuscarEntradaPorCodigo(codigo);
+
+            if (!response.EsCorrecto)
+            {
+                TempData["ErrorMessage"] = "No se pudieron cargar los datos. Inténtelo de nuevo.";
+                return RedirectToAction("Index");
+            }
+
+            var entrada = _modelMapper.ToDetailModel(response.Data);
+            return View(entrada);
         }
 
         // GET: Entrada/Create
@@ -71,48 +80,5 @@ namespace Pymex.MVC.Controllers.Inventario
             return Json(new { status = true, message = "Se ingresó la entrada correctamente!" }, JsonRequestBehavior.AllowGet);
         }
 
-        // GET: Entrada/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: Entrada/Edit/5
-        [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Entrada/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Entrada/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }

@@ -101,7 +101,18 @@ document.querySelector("#addProduct").addEventListener("click", e => {
     const searchButton = createButton("search", "secondary");
 
     lockButton.addEventListener("click", function (e) {
-        console.log("lock");
+        let targetElement = e.target.parentElement.parentElement;
+        if (targetElement.nodeName === "TD") {
+            targetElement = targetElement.parentElement;
+        }
+
+        const unitPurchasePriceInput = targetElement.children[4].firstElementChild;
+        const unitSellPriceInput = targetElement.children[5].firstElementChild;
+        const quantityInput = targetElement.children[6].firstElementChild;
+
+        unitPurchasePriceInput.readOnly = !unitPurchasePriceInput.readOnly;
+        unitSellPriceInput.readOnly = !unitSellPriceInput.readOnly;
+        quantityInput.readOnly = !quantityInput.readOnly;
     });
 
     trashButton.addEventListener("click", function (e) {

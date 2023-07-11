@@ -9,9 +9,10 @@ using System.Web;
 namespace Pymex.MVC.Models.Mapper
 {
     public class EntradaMapper 
-        : IGenericMapper<EntradaDC, Entrada>,
+        : IModelDetailMapper<EntradaDC, EntradaDetail>,
           ICreateMapper<EntradaDC, EntradaJsonCreate>
     {
+
         public EntradaDC ToCreateDataContract(EntradaJsonCreate model)
         {
             return new EntradaDC
@@ -29,9 +30,43 @@ namespace Pymex.MVC.Models.Mapper
             };
         }
 
-        public EntradaDC ToDataContract(Entrada model)
+        public EntradaDetail ToDetailModel(EntradaDC dataContract)
         {
-            throw new NotImplementedException();
+            return new EntradaDetail
+            {
+                Id = dataContract.Id,
+                Codigo = dataContract.Codigo,
+                FechaRegistro = dataContract.FechaRegistro,
+                IdProveedor = dataContract.Proveedor.Id,
+                NombreProveedor = dataContract.Proveedor.NombreCompleto,
+                UsuarioRegistro = dataContract.HistorialSeguimiento.UsuarioRegistro,
+                Proveedor = new Proveedor
+                {
+                    Id = dataContract.Proveedor.Id,
+                    TipoDocumento = (TipoDocumento)dataContract.Proveedor.TipoDocumento,
+                    NumeroDocumento = dataContract.Proveedor.NumeroDocumento,
+                    NombreCompleto = dataContract.Proveedor.NombreCompleto,
+                    FechaRegistro = dataContract.Proveedor.HistorialSeguimiento.FechaRegistro
+                },
+                Productos = dataContract.DetalleProductos.Select(dp => new InventarioRegistroProducto
+                {
+                    Id = dp.Id,
+                    Producto = new Producto
+                    {
+                        Id = dp.Producto.Id,
+                        Codigo = dp.Producto.Codigo,
+                        Descripcion = dp.Producto.Descripcion,
+                        CategoriaId = dp.Producto.Categoria.Id,
+                        CategoriaDescripcion = dp.Producto.Categoria.Descripcion,
+                        AlmacenId = dp.Producto.Almacen.Id,
+                        AlmacenDescripcion = dp.Producto.Almacen.Descripcion,
+                        Activo = dp.Producto.Activo,
+                    },
+                    PrecioCompraUnidad = dp.PrecioCompraUnidad,
+                    PrecioVentaUnidad = dp.PrecioVentaUnidad,
+                    Cantidad = dp.Cantidad
+                })
+            };
         }
 
         public Entrada ToModel(EntradaDC dataContract)

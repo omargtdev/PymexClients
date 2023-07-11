@@ -34,10 +34,19 @@ namespace Pymex.MVC.Controllers.Inventario
             return View(salidas);
         }
 
-        // GET: Salida/Details/5
-        public ActionResult Details(int id)
+        [Route("Details")]
+        public ActionResult Details(string codigo)
         {
-            return View();
+            var response = _inventarioService.BuscarSalidaPorCodigo(codigo);
+
+            if (!response.EsCorrecto)
+            {
+                TempData["ErrorMessage"] = "No se pudieron cargar los datos. Inténtelo de nuevo.";
+                return RedirectToAction("Index");
+            }
+
+            var entrada = _modelMapper.ToDetailModel(response.Data);
+            return View(entrada);
         }
 
         // GET: Salida/Create

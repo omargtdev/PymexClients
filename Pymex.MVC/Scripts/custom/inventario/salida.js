@@ -101,7 +101,13 @@ document.querySelector("#addProduct").addEventListener("click", e => {
     const searchButton = createButton("search", "secondary");
 
     lockButton.addEventListener("click", function (e) {
-        console.log("lock");
+        let targetElement = e.target.parentElement.parentElement;
+        if (targetElement.nodeName === "TD") {
+            targetElement = targetElement.parentElement;
+        }
+
+        const quantityInput = targetElement.children[6].firstElementChild;
+        quantityInput.readOnly = !quantityInput.readOnly;
     });
 
     trashButton.addEventListener("click", function (e) {
