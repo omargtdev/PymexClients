@@ -263,6 +263,12 @@ namespace Pymex.MVC.UsuarioProxy {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsuarioService/ActualizarUsuario", ReplyAction="http://tempuri.org/IUsuarioService/ActualizarUsuarioResponse")]
         System.Threading.Tasks.Task<Pymex.MVC.UsuarioProxy.ResponseDataContract> ActualizarUsuarioAsync(Pymex.MVC.UsuarioProxy.UsuarioDC usuario);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsuarioService/CambiarPerfilUsuario", ReplyAction="http://tempuri.org/IUsuarioService/CambiarPerfilUsuarioResponse")]
+        Pymex.MVC.UsuarioProxy.ResponseDataContract CambiarPerfilUsuario(Pymex.MVC.UsuarioProxy.UsuarioDC dataContract, string usuarioSolicitante);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IUsuarioService/CambiarPerfilUsuario", ReplyAction="http://tempuri.org/IUsuarioService/CambiarPerfilUsuarioResponse")]
+        System.Threading.Tasks.Task<Pymex.MVC.UsuarioProxy.ResponseDataContract> CambiarPerfilUsuarioAsync(Pymex.MVC.UsuarioProxy.UsuarioDC dataContract, string usuarioSolicitante);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -314,6 +320,14 @@ namespace Pymex.MVC.UsuarioProxy {
         
         public System.Threading.Tasks.Task<Pymex.MVC.UsuarioProxy.ResponseDataContract> ActualizarUsuarioAsync(Pymex.MVC.UsuarioProxy.UsuarioDC usuario) {
             return base.Channel.ActualizarUsuarioAsync(usuario);
+        }
+        
+        public Pymex.MVC.UsuarioProxy.ResponseDataContract CambiarPerfilUsuario(Pymex.MVC.UsuarioProxy.UsuarioDC dataContract, string usuarioSolicitante) {
+            return base.Channel.CambiarPerfilUsuario(dataContract, usuarioSolicitante);
+        }
+        
+        public System.Threading.Tasks.Task<Pymex.MVC.UsuarioProxy.ResponseDataContract> CambiarPerfilUsuarioAsync(Pymex.MVC.UsuarioProxy.UsuarioDC dataContract, string usuarioSolicitante) {
+            return base.Channel.CambiarPerfilUsuarioAsync(dataContract, usuarioSolicitante);
         }
     }
 }

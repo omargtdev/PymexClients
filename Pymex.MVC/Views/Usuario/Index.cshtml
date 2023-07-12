@@ -1,8 +1,145 @@
-﻿
+﻿@model IEnumerable<Pymex.MVC.Models.Usuario>
+
 @{
     ViewBag.Title = "Admin - Usuarios";
     Layout = "~/Views/Shared/_MainLayout.cshtml";
 }
 
-<h2>Usuarios</h2>
+@section styles {
+    @Styles.Render("~/Content/table")
+}
 
+@if(ViewBag.SuccessMessage != null)
+    {
+        <div class="alert alert-success alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            @ViewBag.SuccessMessage
+        </div>
+    }
+
+@if(ViewBag.ErrorMessage != null)
+    {
+        <div class="alert alert-danger alert-dismissible">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            @ViewBag.ErrorMessage
+        </div>
+    }
+
+<!-- DataTable -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h2 class="m-0 font-weight-bold text-primary">Usuarios</h2>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Acciones</th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Id)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Login)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FullName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Perfil)
+                        </th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Acciones</th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Id)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Login)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.FullName)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Perfil)
+                        </th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach(var item in Model)
+                    {
+                        <tr class="@(item.IsAdmin ? "bg-primary text-white" : "")">
+                            <td>
+                                <a href="#" class="change-profile" data-login="@item.Login" data-state="@(item.IsAdmin ? "admin" : "employee")">
+                                    <i class="fas fa-exchange-alt" style="@(item.IsAdmin ? "color: #ffffff;" : "")"></i>
+                                </a>
+                            </td>
+                            <td>@Html.DisplayFor(p => item.Id)</td>
+                            <td>@Html.DisplayFor(p => item.Login)</td>
+                            <td>@Html.DisplayFor(p => item.FullName)</td>
+                            <td>@Html.DisplayFor(p => item.Perfil)</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Active/Desactive Modal-->
+<div class="modal fade" id="activateModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"></h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Recuerde que puede afectar a otros usuarios si están logueados en el sistema.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancelar</button>
+                <form method="post" action="~/Admin/Usuario/CambiarPerfil" class="action-form">
+                    <input class="d-none" name="login" type="text"/>
+                    <input class="d-none" name="perfilId" type="number"/>
+                    <button type="submit" class="btn btn-primary">Actualizar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    @Scripts.Render("~/bundles/datatable")
+
+    <script>
+        $(document).on("click", "a.change-profile", openModalPopUp);
+
+        const profilesToChange = {
+            admin: 2, // 3 => admin
+            employee: 3 // 2 => employee
+        }
+
+        function openModalPopUp() {
+            const modal = $("#activateModal");
+            const userLogin = $(this).data("login");
+            const userProfileId = profilesToChange[$(this).data("state")];
+
+            // Modal title
+            modal.find(".modal-title").text(
+                `¿Estás seguro que deseas cambiar el rol del usuario?`
+            );
+
+            // Modal form
+            const form = modal.find(".action-form");
+            form.find("input[name='login']").val(userLogin);
+            form.find("input[name='perfilId']").val(userProfileId);
+ 
+            // Show modal
+            modal.modal();
+        }
+    </script>
+}
